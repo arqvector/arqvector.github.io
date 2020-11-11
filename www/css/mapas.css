@@ -1,0 +1,59 @@
+.leaflet-control-locate a {
+	background-image: url(https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-locate.png);
+} 
+	  html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    #map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+    height: 100%;
+	width: 100%;
+	z-index: 0;
+      }
+    #autocomplete {
+	padding: 3px 5px 2px 10px !important;
+	background: rgba(255, 255, 255, 0.3) !important;
+	border-radius: 3px;/**/
+	text-align: left;
+    z-index: 100;
+	position:relative;
+    }
+/* full size */
+
+.ctl {
+	padding: 2px 10px 2px 10px;
+	background: white;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	text-align: right;
+}
+
+.title {
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.src {
+	padding: 0px 5px 0px 5px !important;
+	border-radius: 0px !important;
+	font-size: 8pt;
+	margin-bottom: 0px !important;
+	margin-left: 0px !important;
+}
+
+.leaflet-control-layers {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	/*width: 50px;*/
+	height: 35px;
+}
