@@ -27,6 +27,13 @@ thead th {
   top: 0;
 }
 
+.container-fluid{
+  padding: 100px;
+  overflow: hidden; 
+  overflow-y: auto;
+  height: 100vh;;
+}
+
 .active, .collapsible:hover {
   background-color: #555;
 }
@@ -46,12 +53,14 @@ thead th {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid">
+<nav class="navbar fixed-top navbar-light bg-light">
 <br>
 <h3>Cores Munsell e descrição ISCC–NBS (pt)</h3>
 <br>
 <input class="form-control" id="myInput" type="text" placeholder="Pesquisar...">
 <br>
+</nav>
+<div class="container-fluid">
 <button type="button" class="collapsible">Cores activas</button>
 <div class="content">
 <table class="table table-hover">
