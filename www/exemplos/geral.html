@@ -1,0 +1,425 @@
+<html>
+<head>
+<meta charset="utf-8">
+<head>
+<title>Mapa Geral Turismo</title>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@latest/dist/leaflet.css" /> -->
+<!-- <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<!-- <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script> -->
+<!-- Leaflet-UI -->
+<!-- <script src="https://unpkg.com/leaflet-ui@latest/dist/leaflet-ui.js"></script> -->
+<!-- Botão Fullscreen -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+<!-- leaflet-locatecontrol -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.72.0/dist/L.Control.Locate.min.css" />
+<script src="https://unpkg.com/leaflet.locatecontrol@0.72.0/src/L.Control.Locate.js"></script>
+<!-- Pesquisa Ruas-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<style>
+.leaflet-control-locate a {
+	background-image: url(https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-locate.png);
+}
+body {
+	margin: 0;
+	padding: 0;
+}
+body, table, tr, td, th, div, h1, h2,
+input {
+	font-family: "Calibri", "Trebuchet MS", "Ubuntu", Serif;
+	font-size: 11pt;
+}
+
+#map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+
+/* full size */
+
+.ctl {
+	padding: 2px 10px 2px 10px;
+	background: white;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	text-align: right;
+}
+
+.title {
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.src {
+	padding: 0px 5px 0px 5px !important;
+	border-radius: 0px !important;
+	font-size: 8pt;
+	margin-bottom: 0px !important;
+	margin-left: 0px !important;
+}
+
+.leaflet-control-layers {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	/*width: 50px;*/
+	height: 35px;
+}
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+  
+<script>
+function scrollMap(position) {
+      // Scrolls the map so that it is centered at (position.coords.latitude, position.coords.longitude).
+    }
+
+    function handleError(error) {
+      // Update a div element with error.message.
+    }
+	
+	var geo_options = {
+	enableHighAccuracy: true, 
+	maximumAge        : 30000, 
+	timeout           : 27000
+	};
+
+    // Request repeated updates.
+    var watchId = navigator.geolocation.watchPosition(scrollMap, handleError, geo_options);
+
+    function buttonClickHandler() {
+      // Cancel the updates when the user clicks a button.
+      navigator.geolocation.clearWatch(watchId);
+    }
+
+/* **** Leaflet **** */
+var opts = {
+// Localização
+    locateControl: {
+	  options: {
+	    position: "topleft",
+		strings: {
+            enableHighAccuracy: true, 
+			},
+        },
+      },
+    };
+// Base layers
+//  .. OpenStreetMap
+var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. OpenTopoMap
+var otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. Esri DGT
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. CartoDB Positron
+var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 1,
+		maxZoom: 21
+	});
+// Caminho para camadas GeoJSON //
+// mesmo caminho para o local do ficheiro HTML.
+var urlbasept = 'geo/portugal.geojson';
+var urlobidos = 'geo/obidos.geojson';
+
+
+// Muda rato // teste
+function style(feature) {
+	return {
+		weight: 2,
+		//opacity: 1,
+		color: 'white',
+		dashArray: '3',
+		fillOpacity: 0.5,
+		fillColor: "blue"
+	};
+}
+
+function highlightFeature(e) {
+	var layer = e.target;
+
+	layer.setStyle({
+		weight: 5,
+		color: '#ff7f00',
+		dashArray: '',
+		fillOpacity: 0.7
+	});
+
+	if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		layer.bringToFront();
+	}
+}
+
+function resetHighlight(e) {
+	geojson.resetStyle(e.target);
+}
+
+function zoomToFeature(e) {
+	map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseout: resetHighlight,
+		mouseover: highlightFeature,
+		click: zoomToFeature
+	});
+}
+
+// Funções
+function forEachFeature(feature, layer) {
+	layer.on('mouseout', function () {
+		this.setStyle(estlinhas);
+		//this.closePopup();
+		layer.on({
+			click: zoomToFeature
+		});
+	});
+
+	//  zoomToFeature, // para fazer zoom para a geometria
+	layer.bindPopup(popupContent);
+	layer.on('mouseover', function () {
+		this.setStyle({
+			//color: 'red'
+			"opacity": "0.6",
+			"weight": 8
+		}),
+		popupContent;
+		//this.openPopup();
+	});
+	// Legenda popup geoJSON
+	var popupContent = "<p>Bem-vindo ao Concelho Óbidos<b>" +
+		//feature.properties.Name + "</b></br>" +
+		//feature.properties.description + "</br>" +
+		//'<img src="OBD.svg" class="center">' +
+		//'<a href="' + feature.properties.link + '" target="_blank"><img src="' +feature.properties.icon +'" class="center"></a>
+		'</p>';
+
+	if (feature.properties && feature.properties.popupContent) {
+		popupContent += feature.properties.popupContent;
+	}
+	layer.bindPopup(popupContent);
+};
+
+
+//var map = L.map('map', {
+//  center: [39.36321, -9.18935],
+//  zoom: 1,
+//  // Optional customizations
+//  mapTypeId: 'streets',
+//  mapTypeIds: ['osm', 'streets', 'satellite', 'topo'],
+//  gestureHandling: true,
+//  zoomControl: true,
+//  pegmanControl: true,
+//  locateControl: true,
+//  fullscreenControl: true,
+//  layersControl: true,
+//  minimapControl: true,
+//  editInOSMControl: false,
+//  loadingControl: true,
+//  searchControl: true,
+//  disableDefaultUI: false,
+//});
+//map.once('idle',function(){ /* Waiting for map init */});
+
+//var map = L.map('map').setView([0, 0], 2);
+//L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+//}).addTo(map);
+
+// Map //
+var map = L.map('map', {
+		//center: [38.3628700758, -9.1520240589],
+		//center: [39.363786, -9.185733],
+		center: [39.36321, -9.18935],
+		////minZoom: 1,
+		//maxZoom: 21,
+		layers: [osm]
+	}).setView([0, 0], 2);;
+
+// Definição de legenda layers base //
+
+
+// Creating a Marker
+         var markerOptions = {
+            //title: "Óbidos",
+            clickable: true,
+            //draggable: true
+         }
+         // Creating a marker
+         var marker = L.marker([39.36196, -9.15713], markerOptions);
+         // Adding marker to the map
+         marker.addTo(map);
+
+
+//Voar para o layer	
+map.flyTo([39.36196, -9.15713], 12, {
+        animate: true,
+        duration: 10
+});
+
+
+marker.bindPopup("Bem-vindo a Óbidos");
+        marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+		
+
+//Limitar o momento em que aparece o layer
+map.on('moveend', function () {
+	    if (map.getZoom() >= 22 && map.hasLayer(obidos)) {
+	       map.removeLayer(obidos);
+	    }
+	    if (map.getZoom() < 13 && map.hasLayer(obidos)==false) {
+	       map.addLayer(obidos);
+	    }
+});
+
+
+var estlinhas = {
+	//"color": "#ca0020",
+	"weight": 0,
+	"opacity": 0.9
+};
+
+// Estilos geoJSON
+var estlinhabase = {
+	//"fillColor": "#00",
+	"color": "#3388ff",
+	"weight": 0,
+	"opacity": 0.7,
+	//"fillOpacity": 0.1
+};
+
+var estlinhabaseprs = {
+	"color": "#ff7f00",
+	"weight": 1,
+	"opacity": 0.7
+};
+
+// Base portugal
+var basept = L.geoJSON(null, {
+		style: estlinhabase
+	});
+// Base todos os prs
+var obidos = L.geoJSON(null, {
+
+onEachFeature: forEachFeature,
+		style: estlinhabaseprs,
+
+	});
+
+
+
+
+  // Carregar GeoJSON e criar features. //
+// Portugal basept
+$.getJSON(urlbasept, function (data) {
+	basept.addData(data);
+	//basept.bindPopup("Bem-vindo a Portugal");
+    //    basept.on('mouseover', function (e) {
+    //        this.openPopup();
+    //    });
+    //    basept.on('mouseout', function (e) {
+    //        this.closePopup();
+    //    });
+});
+//basept.addTo(map);
+
+// Definição de legenda layers base //
+var basemaps = {
+	"OpenStreetMap": osm,
+	"OpenTopoMap": otm,
+	"Satélite": esri,
+	"CartoDB Positron": cartodb,
+}
+
+// Definição de legenda "layers" que aparecem de no arranque //
+var overlaymaps = {
+	"Concelho de Óbidos": obidos,
+}
+
+//base com todos os pr
+$.getJSON(urlobidos, function (data) {
+	obidos.addData(data);
+	obidos.bringToBack();
+});
+//obidos.addTo(map);
+
+
+// Botão Fullscreen
+map.addControl(new L.Control.Fullscreen());
+
+// Localização
+var controlLocate = L.control.locate(opts.locateControl.options).addTo(map);
+
+
+// Notas
+var src = 'Município de Óbidos & Turismo';
+var title = L.control({
+		position: 'bottomleft'
+	});
+title.onAdd = function (map) {
+	this._div = L.DomUtil.create('div', 'ctl src');
+	this.update();
+	return this._div;
+};
+title.update = function (props) {
+	this._div.innerHTML = src;
+};
+title.addTo(map);
+
+// Escala
+L.control.scale().addTo(map);
+
+// Layer control - Adicionar layer base
+L.control.layers(basemaps, overlaymaps, {
+	collapsed: true
+}).addTo(map);
+
+//Pesquisar ruas
+L.Control.geocoder({
+		position: 'topleft'
+	}).addTo(map);
+
+</script>
+
+
+</body>
+
+</html>

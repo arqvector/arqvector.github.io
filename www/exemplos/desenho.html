@@ -1,0 +1,104 @@
+<!DOCTYPE html><link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.css" />
+    <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+    <title>Leaflet.draw vector editing handlers</title>
+	
+	<!-- Leaflet (JS/CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	
+    <!-- Desenhar -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.css" />
+    <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
+	
+	<!-- Botão Fullscreen -->
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+	<style>
+        #map { 
+            width: 100%;
+            height: 100%;
+            float: left;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+	osmAttrib = '© <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	osm = L.tileLayer(osmUrl, {
+		maxZoom: 21,
+		attribution: osmAttrib
+	}),
+	map = new L.Map('map', {
+		center: new L.LatLng(39.694513, -8.130554),
+		zoom: 5
+	}),
+	drawnItems = L.featureGroup().addTo(map);
+L.control.layers({
+	"OpenStreetMap": osm.addTo(map),
+	"Google Satélite": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+		attribution: 'google'
+	}),
+	"Satélite": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 10,
+		maxZoom: 21
+	}),
+	"OpenTopoMap": L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	}),
+	"CartoDB Positron": L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 10,
+		maxZoom: 21
+	})
+}, {
+	'Camada Desenho': drawnItems
+}, {
+	position: 'topright',
+	collapsed: true
+}).addTo(map);
+map.addControl(new L.Control.Draw({
+position: 'topright',
+	edit: {
+		featureGroup: drawnItems,
+		poly: {
+			allowIntersection: false
+		}
+	},
+	draw: {
+		polygon: {
+			allowIntersection: false,
+			showArea: true
+		}
+	}
+}));
+
+map.on(L.Draw.Event.CREATED, function (event) {
+	var layer = event.layer;
+
+	drawnItems.addLayer(layer);
+});
+
+// Botão Fullscreen
+map.addControl(new L.Control.Fullscreen());
+
+// Escala
+L.control.scale().addTo(map);
+
+</script>
+</body>
+</html>
