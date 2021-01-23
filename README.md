@@ -28,7 +28,7 @@ https://arqvector.github.io/munsell/munsell_real.html
 
 Trabalhamos com diversas tecnologias de código aberto (gratuitas) aplicadas ao património e em particular ao património arqueológico.
 
-Os trabalho que produzimos é desenvolvido com recurso a programas de código aberto no sentido de facilitar/fomentar o seu uso, numa óptica de entre ajuda. Tendo presente a redução custos, a aquisição de programas proprietários são por regra extremamente dispendiosos.
+Os trabalho que produzimos é desenvolvido com recurso a programas de código aberto no sentido de facilitar/fomentar o seu uso, numa óptica de entre ajuda.
 
 Este projecto pretende ir ao encontro do RNID – Regulamento Nacional de Interoperabilidade Digital – [Decreto-Lei n.º 83/2018](https://dre.pt/application/conteudo/116734769) ([ver mais ANSOL](https://ansol.org/normasabertas/rnid)).  
 Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 de junho, que estabelece a adoção de normas abertas nos sistemas informáticos do Estado, à Administração Pública local e a funções consideradas essenciais, no que diz respeito à acessibilidade do conteúdo de sítios web e de aplicações móveis”.
