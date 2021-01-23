@@ -37,6 +37,7 @@ Os trabalho que produzimos é desenvolvido com recurso a programas de código ab
 Este projecto pretende ir ao encontro do RNID – Regulamento Nacional de Interoperabilidade Digital – [Decreto-Lei n.º 83/2018](https://dre.pt/application/conteudo/116734769) ([ver mais ANSOL](https://ansol.org/normasabertas/rnid)).  
 Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 de junho, que estabelece a adoção de normas abertas nos sistemas informáticos do Estado, à Administração Pública local e a funções consideradas essenciais, no que diz respeito à acessibilidade do conteúdo de sítios web e de aplicações móveis”.
 
+
 ## Arqueologia & Património [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
 - Desenho
@@ -47,6 +48,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 - 3D
 - Cores de Munsell
 
+
 ## Desenho; Fotografia; Base de Dados [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
 |                                             |                                                                            |
@@ -54,6 +56,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | » [Inkscape](https://inkscape.org/pt/)      | [![](www/imagens/logos/inkscape-80x80.jpg)](https://inkscape.org/pt/)      |
 | » [GIMP](https://www.gimp.org/)             | [![](www/imagens/logos/gimp-80x80.jpg)](https://www.gimp.org/)             |
 | » [PostgreSQL](https://www.postgresql.org/) | [![](www/imagens/logos/postgresql-80x80.png)](https://www.postgresql.org/) |
+
 
 ## Sistemas de Informação Geográfica [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
@@ -67,6 +70,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | » [MapGuide](https://mapguide.osgeo.org/)   | [![](www/imagens/logos/mapguide-80x80.jpg)](https://mapguide.osgeo.org/)   |
 | » [GDAL](https://gdal.org/)                 | [![](www/imagens/logos/gdal-80x80.png)](https://gdal.org/)                 |
 
+
 ## Fotogrametria e 3D [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
 |                                                |                                                                           |
@@ -74,6 +78,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | » [Visual SFM](http://ccwu.me/vsfm/)           | [![](www/imagens/logos/visualsfm_151697-80x80.png)](http://ccwu.me/vsfm/) |
 | » [MeshLab](http://www.meshlab.net/)           | [![](www/imagens/logos/meslab-80x80.jpg)](http://www.meshlab.net/)        |
 | » [CloudCompare](https://www.danielgm.net/cc/) | [![](www/imagens/logos/cc-80x80.png)](https://www.danielgm.net/cc/)       |
+
 
 ## Divulgação 3D [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
@@ -83,4 +88,4 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 
 ----
 
-# Cores de Munsell [topo](#arqvectorgithubio)
+# Cores de Munsell [![](www/css/img/external-link.png)](#arqvectorgithubio)
