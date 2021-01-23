@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="550"
+   height="550"
+   viewBox="0 0 549.99999 549.99999"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="munsell_roda.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.1"
+     inkscape:cx="290.92516"
+     inkscape:cy="229.35489"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0"
+     scale-x="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-164.70831)">
+    <path
+       id="Neutro"
+       style="fill:#888987;fill-opacity:1;stroke:none;stroke-width:27.3457"
+       d="m 290.24005,439.70837 a 15.460033,15.550153 0 1 0 -30.92006,0 15.460033,15.550153 0 1 0 30.92006,0 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5R"
+       style="fill:#ff406c;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 274.78002,301.49698 v -69.12399 l -32.25268,2.56004 10.76305,68.24624 z"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1585">2.5R</title>
+    </path>
+    <path
+       id="5R"
+       style="fill:#f4083d;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 274.78002,301.49698 v -69.12399 l 32.25271,2.56004 -10.76305,68.24624 z"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1583">5R</title>
+    </path>
+    <path
+       id="7.5R"
+       style="fill:#f0201e;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 317.25031,308.26303 21.23525,-65.75919 -31.45283,-7.57081 -10.76305,68.24624 z"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1587">7.5R</title>
+    </path>
+    <path
+       id="10R"
+       style="fill:#ff6114;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 317.2503,308.26303 21.23525,-65.75919 29.88915,12.47154 -31.1982,61.58985 z"
+       inkscape:connector-curvature="0">
+      <title
+         id="title1589">10R</title>
+    </path>
+    <path
+       id="2.5YR"
+       style="fill:#ee710a;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 355.57544,327.86651 40.36132,-55.8844 -27.56206,-17.00673 -31.1982,61.58985 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5YR"
+       style="fill:#ffae2b;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 355.57544,327.86651 40.36132,-55.8844 24.61681,21.10295 -48.57905,48.89881 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5YR"
+       style="fill:#f39d1c;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 385.97369,358.47853 55.59689,-40.63316 -21.01701,-24.76031 -48.57905,48.89881 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10YR"
+       style="fill:#ffbd28;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 385.97369,358.47853 55.59689,-40.63316 16.87181,27.72271 -61.19654,31.38009 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5Y"
+       style="fill:#fbc30a;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 405.49991,396.99048 65.34176,-21.359 -12.39928,-30.0634 -61.19654,31.38009 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5Y"
+       style="fill:#ffe51d;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 405.49994,396.99048 65.34173,-21.359 7.56315,31.63614 -67.88703,10.82582 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5Y"
+       style="fill:#fee90c;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 412.22677,439.70833 h 68.68702 l -2.54531,-32.44071 -67.88707,10.82582 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10Y"
+       style="fill:#d6d02f;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 412.2268,439.70833 h 68.68699 l -2.54531,32.44071 -67.88707,-10.82576 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5GY"
+       style="fill:#e2f10d;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 405.49991,482.42619 65.34176,21.35904 7.56315,-31.63619 -67.88707,-10.82576 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5GY"
+       style="fill:#d0f629;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 405.49991,482.42619 65.34176,21.35904 -12.39928,30.0634 -61.19654,-31.38021 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5GY"
+       style="fill:#a1ff2c;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 385.97369,520.97474 55.59689,40.6332 16.87181,-27.75931 -61.19654,-31.38021 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10GY"
+       style="fill:#10ff29;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 385.97369,520.97474 55.59689,40.6332 -21.01701,24.72371 -48.57905,-48.86225 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5G"
+       style="fill:#35e786;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 355.57544,551.5502 40.36132,55.92096 24.61681,-21.13951 -48.57905,-48.86225 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5G"
+       style="fill:#43e4a6;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 355.57544,551.5502 40.36132,55.92096 -27.56206,17.00665 -31.1982,-61.58974 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5G"
+       style="fill:#2fe4b1;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 317.2503,571.19024 21.23525,65.72263 29.88915,-12.43506 -31.1982,-61.58974 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10G"
+       style="fill:#14e4bb;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 317.2503,571.19024 21.23525,65.72263 -31.45282,7.60725 -10.76305,-68.28275 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5BG"
+       style="fill:#0fffdf;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 274.78002,577.95633 v 69.0874 l 32.25271,-2.56016 -10.76305,-68.2828 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5BG"
+       style="fill:#4be0d0;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 274.78002,577.95633 v 69.0874 l -32.25268,-2.56016 10.76305,-68.2828 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5BG"
+       style="fill:#45dfda;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 232.30974,571.19024 -21.23525,65.72263 31.45285,7.60725 10.76305,-68.28275 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10BG"
+       style="fill:#1dc2ca;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 232.30974,571.19024 -21.23525,65.72263 -29.88914,-12.43506 31.19822,-61.58974 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5B"
+       style="fill:#28c0d3;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 193.98463,551.5502 -40.36135,55.92096 27.56207,17.00665 31.19822,-61.58974 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5B"
+       style="fill:#3cbedb;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 193.98463,551.5502 -40.36135,55.92096 -24.61679,-21.13951 48.61542,-48.86225 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5B"
+       style="fill:#4fbce1;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 163.58636,520.97474 -55.59686,40.6332 21.01699,24.72371 48.61542,-48.86225 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10B"
+       style="fill:#35bbf4;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="M 163.58636,520.97474 107.9895,561.60794 91.117663,533.84863 152.3142,502.46842 Z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5PB"
+       style="fill:#459bda;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 144.06013,482.42619 -65.341706,21.35904 12.399239,30.0634 61.196537,-31.38021 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5PB"
+       style="fill:#1798fb;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="M 144.06013,482.42619 78.718424,503.78523 71.191496,472.14904 139.04218,461.32328 Z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5PB"
+       style="fill:#4137ff;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="M 137.36975,439.70833 H 68.646264 l 2.545232,32.44071 67.850684,-10.82576 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10PB"
+       style="fill:#7c17f4;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="M 137.36975,439.70833 H 68.646264 l 2.545232,-32.44071 67.850684,10.82582 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5P"
+       style="fill:#b32cff;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 144.06013,396.99048 -65.341706,-21.359 -7.526928,31.63614 67.850684,10.82582 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5P"
+       style="fill:#c801f9;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 144.06013,396.99048 -65.341706,-21.359 12.399239,-30.0634 61.196537,31.38009 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5P"
+       style="fill:#f734fe;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="M 163.58636,358.47853 107.9895,317.84537 91.117663,345.56808 152.3142,376.94817 Z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10P"
+       style="fill:#ff1de8;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 163.58636,358.47853 -55.59686,-40.63316 21.01699,-24.76031 48.61542,48.89881 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="2.5RP"
+       style="fill:#ff29c9;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 193.98463,327.86651 -40.36135,-55.8844 -24.61679,21.10295 48.61542,48.89881 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="5RP"
+       style="fill:#ff04ac;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 193.98463,327.86651 -40.36135,-55.8844 27.56207,-17.00673 31.19822,61.58985 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="7.5RP"
+       style="fill:#ff2896;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 232.30974,308.26303 -21.23525,-65.75919 -29.88914,12.47154 31.19822,61.58985 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="10RP"
+       style="fill:#ff417f;fill-opacity:1;stroke:none;stroke-width:36.4674"
+       d="m 232.30974,308.26303 -21.23525,-65.75919 31.45285,-7.57081 10.76305,68.24624 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="Red"
+       style="fill:#cf1236;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 241.66057,228.14319 -3.2257,-20.49577 a 233.60814,234.97042 8.987574 0 1 142.61027,22.59535 l -9.37692,18.48105 A 212.99566,214.23774 8.987506 0 0 241.66035,228.14454 Z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Yellow-Red"
+       style="fill:#f37020;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 464.66424,342.25107 a 212.99566,214.23774 8.987506 0 0 -92.99602,-93.52729 l 9.37692,-18.48105 a 233.60814,234.97042 8.987574 0 1 102.02669,102.58205 z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Yellow"
+       style="fill:#ffd900;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="M 485.17303,472.99996 A 212.99566,214.23774 8.987506 0 0 464.66424,342.25107 l 18.40759,-9.42629 a 233.60814,234.97042 8.987574 0 1 22.45099,143.40283 z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Green-Yellow"
+       style="fill:#a7cd38;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 425.28991,591.02458 a 212.99566,214.23774 8.987506 0 0 59.88312,-118.02462 l 20.34987,3.22715 A 233.60814,234.97042 8.987574 0 1 439.85143,605.6599 Z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Green"
+       style="fill:#00ab5a;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 307.903,651.21419 a 212.99566,214.23774 8.987506 0 0 117.38691,-60.18961 l 14.56142,14.63595 a 233.60814,234.97042 8.987574 0 1 -128.70592,66.01664 z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Blue-Green"
+       style="fill:#009583;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 168.51856,649.11447 9.3769,-18.48106 a 212.99566,214.23774 8.987506 0 0 130.00778,20.57927 l 3.2424,20.46304 A 233.60814,234.97042 8.987574 0 1 168.51808,649.11753 Z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Blue"
+       style="fill:#006899;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 66.508403,546.49993 18.390914,-9.39363 a 212.99566,214.23774 8.987506 0 0 92.996143,93.52711 l -9.3769,18.48106 A 233.60814,234.97042 8.987574 0 1 66.508403,546.49993 Z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Purple-Blue"
+       style="fill:#024ea3;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="M 44.040828,403.1297 A 233.60814,234.97042 8.987574 0 0 66.508403,546.49993 L 84.899317,537.1063 A 212.99566,214.23774 8.987506 0 1 64.422937,406.37385 Z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+    <path
+       id="Purple"
+       style="fill:#463a7c;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="M 109.71229,273.69677 A 233.60814,234.97042 8.987574 0 0 44.040828,403.1297 l 20.381507,3.24796 A 212.99566,214.23774 8.987506 0 1 124.30629,288.34788 Z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+     <path
+       id="Red-Purple"
+       style="fill:#892270;fill-opacity:1;stroke:none;stroke-width:36.464"
+       d="m 124.30608,288.34923 -14.59379,-14.65246 a 233.60814,234.97042 8.987574 0 1 128.72258,-66.04935 l 3.2257,20.49577 a 212.99566,214.23774 8.987506 0 0 -117.35449,60.20604 z"
+       inkscape:connector-curvature="0"
+       inkscape:label="" />
+
+
+ <path
+       d="m 322.38202,439.63593 h 57.12244"
+       id="path8-0"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="438.23352"
+       y="-391.63446"
+       id="text12-2"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0,1.0032009,-0.99680932,0,0,0)">10Y</text>
+    <path
+       d="m 320.05221,454.44007 54.32665,17.765"
+       id="path16-6"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="331.60086"
+       y="-513.56433"
+       id="text20-2"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.30803101,0.95410078,-0.94802196,-0.31000613,0,0)">5GY</text>
+    <path
+       d="m 313.29083,467.79507 46.21302,33.79098"
+       id="path24-7"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="192.50919"
+       y="-596.57532"
+       id="text28-5"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.5859098,0.81160658,-0.80643567,-0.58966671,0,0)">10GY</text>
+    <path
+       d="m 302.75978,478.3937 33.57573,46.50934"
+       id="path32-8"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="34.573795"
+       y="-632.54156"
+       id="text36-8"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.80643567,0.58966671,-0.5859098,-0.81160658,0,0)">5G</text>
+    <path
+       d="m 289.48981,485.19843 17.65181,54.67503"
+       id="path40-0"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-126.74576"
+       y="-617.94263"
+       id="text44-2"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.94802203,0.31000598,-0.30803084,-0.95410082,0,0)">10G</text>
+    <path
+       d="m 274.77998,487.54322 v 57.48864"
+       id="path48-3"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-275.65955"
+       y="-554.20856"
+       id="text52-0"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="scale(-0.99680932,-1.0032009)">5BG</text>
+    <path
+       d="m 260.07015,485.19843 -17.65181,54.67503"
+       id="path56-4"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-397.58975"
+       y="-447.57574"
+       id="text60-8"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.94802203,-0.31000598,0.30803084,-0.95410082,0,0)">10BG</text>
+    <path
+       d="m 246.80021,478.3937 -33.57572,46.50934"
+       id="path64-7"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-480.60031"
+       y="-308.48425"
+       id="text68-7"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.80643567,-0.58966671,0.5859098,-0.81160658,0,0)">5B</text>
+    <path
+       d="m 236.26913,467.79507 -46.21302,33.79098"
+       id="path72-7"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-516.56659"
+       y="-150.54884"
+       id="text76-7"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.5859098,-0.81160658,0.80643567,-0.58966671,0,0)">10B</text>
+    <path
+       d="m 229.50776,454.44007 -54.32665,17.765"
+       id="path80-9"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-501.96793"
+       y="10.771279"
+       id="text84-9"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(-0.30803101,-0.95410078,0.94802196,-0.31000613,0,0)">5PB</text>
+    <path
+       d="M 227.17796,439.63593 H 170.05551"
+       id="path88-8"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-438.23352"
+       y="159.6846"
+       id="text92-8"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0,-1.0032009,0.99680932,0,0,0)">10PB</text>
+    <path
+       d="M 229.50776,424.83175 175.18111,407.06674"
+       id="path96-9"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-331.60086"
+       y="281.61441"
+       id="text100-1"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.30803099,-0.9541008,0.94802196,0.31000611,0,0)">5P</text>
+    <path
+       d="M 236.26913,411.47674 190.05611,377.68577"
+       id="path104-4"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-192.50919"
+       y="364.6254"
+       id="text108-5"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.58590974,-0.81160664,0.80643568,0.58966667,0,0)">10P</text>
+    <path
+       d="M 246.80021,400.87811 213.22449,354.36878"
+       id="path112-1"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="-34.573895"
+       y="400.59152"
+       id="text116-8"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.80643569,-0.58966666,0.58590975,0.81160663,0,0)">5RP</text>
+    <path
+       d="M 260.07015,394.07342 242.41834,339.3984"
+       id="path120-2"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="126.74596"
+       y="385.99271"
+       id="text124-1"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.94802201,-0.31000603,0.30803091,0.9541008,0,0)">10RP</text>
+    <path
+       d="M 274.77998,391.72864 V 334.23999"
+       id="path128-9"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="275.65958"
+       y="322.25845"
+       id="text132-7"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="scale(0.99680932,1.0032009)">5R</text>
+    <path
+       d="M 289.48981,394.07342 307.14162,339.3984"
+       id="path136-2"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="397.58954"
+       y="215.62572"
+       id="text140-0"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.94802201,0.31000603,-0.30803091,0.9541008,0,0)">10R</text>
+    <path
+       d="m 302.75976,400.87811 33.57572,-46.50933"
+       id="path144-6"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="480.60043"
+       y="76.534393"
+       id="text148-6"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.80643569,0.58966666,-0.58590975,0.81160663,0,0)">5YR</text>
+    <path
+       d="m 313.29083,411.47674 46.21302,-33.79097"
+       id="path152-5"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="516.56659"
+       y="-81.401062"
+       id="text156-8"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.58590974,0.81160664,-0.80643568,0.58966667,0,0)">10YR</text>
+    <path
+       d="m 320.05221,424.83175 54.32665,-17.76501"
+       id="path160-9"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.682206px" />
+    <text
+       x="501.96793"
+       y="-242.72119"
+       id="text164-6"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.9076px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="matrix(0.30803099,0.9541008,-0.94802196,0.31000611,0,0)">5Y</text>
+    <text
+       x="275.34509"
+       y="442.20673"
+       id="text132-7-5-6"
+       style="font-weight:bold;font-size:10.9153px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.682206"
+       transform="scale(0.99680932,1.0032009)">N</text>
+    <text
+       transform="matrix(-0.45428416,0.88915903,-0.89285714,-0.45369843,0,0)"
+       x="268.33603"
+       y="-684.12518"
+       id="text20-2-4-0"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013">Green-Yellow</text>
+    <text
+       x="-43.126251"
+       y="-757.30042"
+       id="text36-8-8-2"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(-0.89233185,0.45266749,-0.45531506,-0.88968434,0,0)">Green</text>
+    <text
+       x="-338.11603"
+       y="-633.42798"
+       id="text52-0-3-6"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(-0.98953907,-0.15672759,0.15614189,-0.98584107,0,0)">Blue-Green</text>
+    <text
+       x="-503.9574"
+       y="-359.82111"
+       id="text68-7-3-6"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(-0.70877608,-0.70625807,0.70795794,-0.70544,0,0)">Blue</text>
+    <text
+       id="text84-9-5-0"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       y="-40.990486"
+       x="-477.30307"
+       transform="matrix(-0.15728466,-0.98602201,0.98935813,-0.15558482,0,0)">Purple-Blue</text>
+    <text
+       x="-268.33572"
+       y="201.28281"
+       id="text100-1-0-0"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(0.45428413,-0.88915901,0.89285718,0.45369843,0,0)">Purple</text>
+    <text
+       x="43.125896"
+       y="274.45743"
+       id="text116-8-4-8"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(0.8923319,-0.45266744,0.45531501,0.88968435,0,0)">Red-Purple</text>
+    <text
+       x="338.11609"
+       y="150.58499"
+       id="text132-7-8-5"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(0.98953907,0.15672759,-0.15614189,0.98584107,0,0)">Red</text>
+    <text
+       x="503.95761"
+       y="-123.02179"
+       id="text148-6-1-9"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(0.70877613,0.70625803,-0.70795789,0.70544002,0,0)">Yellow-Red</text>
+    <text
+       x="477.30273"
+       y="-441.85208"
+       id="text164-6-1-5"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica, 'Nimbus Sans L', 'DejaVu Sans', Sans;-inkscape-font-specification:'Helvetica, Nimbus Sans L, DejaVu Sans, Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.42013"
+       transform="matrix(0.15728463,0.98602198,-0.98935817,0.1555848,0,0)">Yellow</text>
+    <path
+       id="seta2"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 240.93436,438.41319 a 34.845581,34.845592 0 0 0 -0.004,0.56263 34.845581,34.845592 0 0 0 32.31064,34.76161 m -34.05506,-32.02346 1.74842,-3.30078 1.77337,3.34788" />
+    <path
+       id="seta1"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 308.90697,440.95069 a 34.845581,34.845592 0 0 0 0.004,-0.56263 34.845581,34.845592 0 0 0 -32.31064,-34.76161 m 34.05506,32.02346 -1.74842,3.30078 -1.77337,-3.34788" />
+  </g>
+</svg>
