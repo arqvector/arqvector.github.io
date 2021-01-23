@@ -7,7 +7,7 @@ https://arqvector.github.io/munsell/munsell.html
 
 https://arqvector.github.io/munsell/munsell_real.html
 
-> [TOC]
+ [TOC]
 
 # ARQVECTOR - Arqueologia, Património, Sistemas de Informação Geográfica, Fotogrametria, 3D
 
@@ -29,15 +29,17 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 
 ## Desenho; Fotografia; Base de Dados
 
-| » [Inkscape](https://inkscape.org/pt/)      | ![](www/imagens/logos/inkscape-80x80.jpg)                                  |
+|                                             |                                                                            |
 | ------------------------------------------- | -------------------------------------------------------------------------- |
+| » [Inkscape](https://inkscape.org/pt/)      | ![](www/imagens/logos/inkscape-80x80.jpg)                                  |
 | » [GIMP](https://www.gimp.org/)             | [![](www/imagens/logos/gimp-80x80.jpg)](https://www.gimp.org/)             |
 | » [PostgreSQL](https://www.postgresql.org/) | [![](www/imagens/logos/postgresql-80x80.png)](https://www.postgresql.org/) |
 
 ## Sistemas de Informação Geográfica
 
-| » [OSGeo](https://www.osgeo.org/)           | [![](www/imagens/logos/osgeo.png)](https://www.osgeo.org/)                 |
+|                                             |                                                                            |
 | ------------------------------------------- | -------------------------------------------------------------------------- |
+| » [OSGeo](https://www.osgeo.org/)           | [![](www/imagens/logos/osgeo.png)](https://www.osgeo.org/)                 |
 | » [QGIS](https://qgis.org/)                 | [![](www/imagens/logos/logo-1.png)](https://qgis.org/)                     |
 | » [PostgreSQL](https://www.postgresql.org/) | [![](www/imagens/logos/postgresql-80x80.png)](https://www.postgresql.org/) |
 | » [PostGIS](https://postgis.net/)           | [![](www/imagens/logos/postgis.jpg)](https://postgis.net/)                 |
@@ -47,12 +49,14 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 
 ## Fotogrametria e 3D
 
-| » [Visual SFM](http://ccwu.me/vsfm/)           | [![](www/imagens/logos/visualsfm_151697-80x80.png)](http://ccwu.me/vsfm/) |
+|                                                |                                                                           |
 | ---------------------------------------------- | ------------------------------------------------------------------------- |
+| » [Visual SFM](http://ccwu.me/vsfm/)           | [![](www/imagens/logos/visualsfm_151697-80x80.png)](http://ccwu.me/vsfm/) |
 | » [MeshLab](http://www.meshlab.net/)           | [![](www/imagens/logos/meslab-80x80.jpg)](http://www.meshlab.net/)        |
 | » [CloudCompare](https://www.danielgm.net/cc/) | [![](www/imagens/logos/cc-80x80.png)](https://www.danielgm.net/cc/)       |
 
 ## Divulgação 3D
 
-| » [Sketchfab](https://sketchfab.com/arqvector) | [![](www/imagens/logos/sketchfab-80x80.png)](https://sketchfab.com/arqvector) |
+|                                                |                                                                               |
 | ---------------------------------------------- | ----------------------------------------------------------------------------- |
+| » [Sketchfab](https://sketchfab.com/arqvector) | [![](www/imagens/logos/sketchfab-80x80.png)](https://sketchfab.com/arqvector) |
