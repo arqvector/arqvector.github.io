@@ -7,6 +7,7 @@ https://arqvector.github.io/munsell/munsell.html
 
 https://arqvector.github.io/munsell/munsell_real.html
 
+------
 * [Início](#arqvector)
   
   * [Arqueologia & Património](#arqueologia-&-património)
@@ -19,7 +20,7 @@ https://arqvector.github.io/munsell/munsell_real.html
 
 * [Divulgação 3D](#divulgação-3d)
   
-  ------
+------
 
 # ARQVECTOR
 
