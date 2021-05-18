@@ -1,0 +1,85 @@
+html,
+body,
+#map,
+#elevation-div {
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+#map {
+	height: 75%;
+	position: relative;
+	z-index: 1;
+}
+
+.leaflet-control-locate a {
+	background-image: url(https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-locate.png);
+}
+
+#elevation-div {
+	overflow: visible;
+	height: 25%;
+	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.data-summary {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+	bottom: 0;
+	left: 45px;
+}
+
+.data-summary .summaryvalue {
+	font-weight: bold;
+}
+
+.src {
+	padding: 0px 5px 0px 5px !important;
+	border-radius: 0px !important;
+	font-size: 8pt;
+	margin-bottom: 0px !important;
+	margin-left: 0px !important;
+}
+
+.ctl {
+	padding: 2px 10px 2px 10px;
+	background: white;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	text-align: right;
+}
+
+.custom-theme.elevation-control.elevation .area {
+	fill: #abd29c;
+	stroke: hsla(60, 0%, 0%, 0.85);
+	stroke-width: 1.25;
+}
+
+.elevation-detached .custom-theme.elevation-control.elevation .area {
+	stroke: #ca0020;
+	fill-opacity: .45
+}
+
+.custom-theme.height-focus {
+	stroke: #000;
+	fill: #00853e
+}
+
+.custom-theme.elevation-polyline {
+	stroke: #ca0020;
+	stroke-opacity: 0.85;
+	stroke-width: 3;
+}
+
+.data-summary {
+	font-family: Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.legend {
+	display: none;
+}

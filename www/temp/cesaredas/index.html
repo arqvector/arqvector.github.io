@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+		.ctl {
+	padding: 2px 10px 2px 10px;
+	background: white;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	text-align: right;
+}
+
+.title {
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.src {
+	padding: 0px 5px 0px 5px !important;
+	border-radius: 0px !important;
+	font-size: 8pt;
+	margin-bottom: 0px !important;
+	margin-left: 0px !important;
+}
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/proj_cesar_alt_rotas_0.js"></script>
+        <script src="data/proj_cesar_alt_sinal_1.js"></script>
+<!-- Botão Fullscreen -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                weight: 8,
+                //color: '#ffff00',
+				'opacity': 0.4,
+				fillOpacity: 0.4
+              });
+            } else {
+              highlightLayer.setStyle({
+                weight: 8,
+                //fillColor: '#ffff00',
+				'opacity': 0.4,
+                fillOpacity: 0.4
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+
+
+// Base layers
+//  .. OpenStreetMap
+var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. OpenTopoMap
+var otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. Esri DGT
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. CartoDB Positron
+var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 10,
+		maxZoom: 21
+});
+cartodb.addTo(map);	
+
+
+        function pop_proj_cesar_alt_rotas_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+<!--                    <tr>\
+                        <th scope="row">ID</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Designação</th>\
+                        <td>' + (feature.properties['designacao'] !== null ? autolinker.link(feature.properties['designacao'].toLocaleString()) : '') + '</td>\
+--!>                     </tr>\
+                    <tr>\
+                        <th scope="row">Rota</th>\
+                        <td>' + (feature.properties['rota'] !== null ? autolinker.link(feature.properties['rota'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+<!--                     <tr>\
+                        <th scope="row">Observações</th>\
+                        <td>' + (feature.properties['observacoes'] !== null ? autolinker.link(feature.properties['observacoes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Foto</th>\
+                        <td>' + (feature.properties['foto'] !== null ? '<img src="images/' + String(feature.properties['foto']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nota</th>\
+                        <td>' + (feature.properties['nota'] !== null ? autolinker.link(feature.properties['nota'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+--!>                    <tr>\
+                        <th scope="row">km</th>\
+                        <td>' + (feature.properties['km'] !== null ? autolinker.link(feature.properties['km'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_proj_cesar_alt_rotas_0_0(feature) {
+            switch(String(feature.properties['rota'])) {
+                case 'Caminho Arranhados':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(105,50,231,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Casa da Moura':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(102,233,113,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Moinhos de Vento':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(197,141,234,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Eiras Velhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(151,208,85,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Fonte da Vitória':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(94,96,221,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Nascente':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(237,212,101,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Rodeiros':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(53,213,218,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Russinhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(195,212,79,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale Assis':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(42,231,178,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale das Pedras':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(67,234,16,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale das Vinhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(239,62,85,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale Ferreiro':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(234,140,45,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Miradouro Grotas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(211,114,219,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Miradouro Vale das Vinhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(118,231,163,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Rota Mundo Rural':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(215,114,91,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Sem Caminho':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(213,63,178,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Fora Concelho':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(130,196,231,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(63,119,230,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        function style_proj_cesar_alt_rotas_0_1(feature) {
+            switch(String(feature.properties['rota'])) {
+                case 'Caminho Arranhados':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Casa da Moura':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Moinhos de Vento':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Eiras Velhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Fonte da Vitória':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Nascente':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Rodeiros':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Russinhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale Assis':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale das Pedras':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale das Vinhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Caminho Vale Ferreiro':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Miradouro Grotas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Miradouro Vale das Vinhas':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Rota Mundo Rural':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Sem Caminho':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                case 'Fora Concelho':
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_proj_cesar_alt_rotas_0',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 1,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_proj_cesar_alt_rotas_0');
+        map.getPane('pane_proj_cesar_alt_rotas_0').style.zIndex = 400;
+        map.getPane('pane_proj_cesar_alt_rotas_0').style['mix-blend-mode'] = 'normal';
+        var layer_proj_cesar_alt_rotas_0 = new L.geoJson.multiStyle(json_proj_cesar_alt_rotas_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_proj_cesar_alt_rotas_0',
+            layerName: 'layer_proj_cesar_alt_rotas_0',
+            pane: 'pane_proj_cesar_alt_rotas_0',
+            onEachFeature: pop_proj_cesar_alt_rotas_0,
+            styles: [style_proj_cesar_alt_rotas_0_0,style_proj_cesar_alt_rotas_0_1,]
+        });
+        bounds_group.addLayer(layer_proj_cesar_alt_rotas_0);
+        map.addLayer(layer_proj_cesar_alt_rotas_0);
+        function pop_proj_cesar_alt_sinal_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+<!--                    <tr>\
+                        <th scope="row">ID</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+--!>                     <tr>\
+                        <th scope="row">Designação</th>\
+                        <td>' + (feature.properties['designacao'] !== null ? autolinker.link(feature.properties['designacao'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Rota</th>\
+                        <td>' + (feature.properties['rota'] !== null ? autolinker.link(feature.properties['rota'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+<!--                    <tr>\
+                        <th scope="row">Observações</th>\
+                        <td>' + (feature.properties['observacoes'] !== null ? autolinker.link(feature.properties['observacoes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Foto</th>\
+                        <td>' + (feature.properties['foto'] !== null ? '<img src="images/' + String(feature.properties['foto']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nota</th>\
+                        <td>' + (feature.properties['nota'] !== null ? autolinker.link(feature.properties['nota'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tipo</th>\
+                        <td>' + (feature.properties['tipo'] !== null ? autolinker.link(feature.properties['tipo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+--!>                    <tr>\
+                        <th scope="row">Art. N.</th>\
+                        <td>' + (feature.properties['art_n'] !== null ? autolinker.link(feature.properties['art_n'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_proj_cesar_alt_sinal_1_0(feature) {
+            switch(String(feature.properties['designacao'])) {
+                case 'Painel Informativo':
+                    return {
+                pane: 'pane_proj_cesar_alt_sinal_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Painel Miradouro':
+                    return {
+                pane: 'pane_proj_cesar_alt_sinal_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Sinalética':
+                    return {
+                pane: 'pane_proj_cesar_alt_sinal_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,183,70,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_proj_cesar_alt_sinal_1');
+        map.getPane('pane_proj_cesar_alt_sinal_1').style.zIndex = 401;
+        map.getPane('pane_proj_cesar_alt_sinal_1').style['mix-blend-mode'] = 'normal';
+        var layer_proj_cesar_alt_sinal_1 = new L.geoJson(json_proj_cesar_alt_sinal_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_proj_cesar_alt_sinal_1',
+            layerName: 'layer_proj_cesar_alt_sinal_1',
+            pane: 'pane_proj_cesar_alt_sinal_1',
+            onEachFeature: pop_proj_cesar_alt_sinal_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_proj_cesar_alt_sinal_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_proj_cesar_alt_sinal_1);
+        map.addLayer(layer_proj_cesar_alt_sinal_1);
+        var baseMaps = {
+	"OpenStreetMap": osm,
+	"OpenTopoMap": otm,
+	"Satélite": esri,
+	"CartoDB Positron": cartodb,};
+        L.control.layers(baseMaps,{'Sinalética<br /><table><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_sinal_1_PainelInformativo0.png" /></td><td>Painel Informativo</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_sinal_1_PainelMiradouro1.png" /></td><td>Painel Miradouro</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_sinal_1_Sinalética2.png" /></td><td>Sinalética</td></tr></table>': layer_proj_cesar_alt_sinal_1,'Rotas<br /><table><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoArranhados0.png" /></td><td>Caminho Arranhados</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoCasadaMoura1.png" /></td><td>Caminho Casa da Moura</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoMoinhosdeVento2.png" /></td><td>Caminho Moinhos de Vento</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoEirasVelhas3.png" /></td><td>Caminho Eiras Velhas</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoFontedaVitória4.png" /></td><td>Caminho Fonte da Vitória</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoNascente5.png" /></td><td>Caminho Nascente</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoRodeiros6.png" /></td><td>Caminho Rodeiros</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoRussinhas7.png" /></td><td>Caminho Russinhas</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoValeAssis8.png" /></td><td>Caminho Vale Assis</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoValedasPedras9.png" /></td><td>Caminho Vale das Pedras</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoValedasVinhas10.png" /></td><td>Caminho Vale das Vinhas</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_CaminhoValeFerreiro11.png" /></td><td>Caminho Vale Ferreiro</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_MiradouroGrotas12.png" /></td><td>Miradouro Grotas</td></tr><tr><td style="text-align: center;"><img src="legend/proj_cesar_alt_rotas_0_MiradouroValedasVinhas13.png" /></td><td>Miradouro Vale das Vinhas</td></tr><tr><td></td></tr></table>': layer_proj_cesar_alt_rotas_0,}).addTo(map);//L.control.scale({position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_proj_cesar_alt_rotas_0.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['rota'] !== null?String('<div style="color: #000000; font-size: 8pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['rota']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_proj_cesar_alt_rotas_0'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_proj_cesar_alt_rotas_0]);
+        map.on("zoomend", function(){
+            resetLabels([layer_proj_cesar_alt_rotas_0]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_proj_cesar_alt_rotas_0]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_proj_cesar_alt_rotas_0]);
+        });
+		
+	// Botão Fullscreen
+	map.addControl(new L.Control.Fullscreen());	
+	
+		// Notas
+	var src = 'Serviço de Arqueologia';
+	var title = L.control({
+			position: 'bottomleft'
+		});
+	title.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'ctl src');
+		this.update();
+		return this._div;
+	};
+	title.update = function (props) {
+		this._div.innerHTML = src;
+	};
+	title.addTo(map);
+		
+		// Escala
+	L.control.scale().addTo(map);
+
+        </script>
+    </body>
+</html>

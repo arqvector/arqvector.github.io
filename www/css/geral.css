@@ -1,0 +1,31 @@
+body {
+	background: #EFEFEF;
+  }
+
+  /* Cor */
+  .negro {
+	background: #303030 !important;
+  }
+
+  /* altera logo arqvector*/
+  .img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60vh !important;
+  }
+
+  .imgs {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100vh !important;
+  }
+
+/* Fazer zoom ao passar com o rato */
+/* .zoom {
+
+ } */
+ .zoom:hover {
+	transform: scale(1.1, 1.1);
+  }

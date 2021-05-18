@@ -1,12 +1,28 @@
+/* leaflet tamanho dos botoes */
+/* .leaflet-touch .leaflet-bar a{ */
+/* width:25px; */
+/* height:25px; */
+/* line-height:25px; */
+/* }  */
+
+/* leaflet-control-locate */
 .leaflet-control-locate a {
-	background-image: url(https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-locate.png);
+	background-image: url(css/elevation-locate.png);
 } 
-	  html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    #map {
+
+/* leaflet-control-layers */
+.leaflet-control-layers {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+/* Config Geral */
+html, body {
+         margin: 0;
+         padding: 0;
+     }
+
+/* Estilo da janela Fullscreen */
+#map {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -14,7 +30,9 @@
 	width: 100%;
 	z-index: 0;
       }
-    #autocomplete {
+
+/* Autocomplete search */
+#autocomplete {
 	padding: 3px 5px 2px 10px !important;
 	background: rgba(255, 255, 255, 0.3) !important;
 	border-radius: 3px;/**/
@@ -22,8 +40,9 @@
     z-index: 100;
 	position:relative;
     }
-/* full size */
 
+
+/* estilo de titulo personalizado */
 .ctl {
 	padding: 2px 10px 2px 10px;
 	background: white;
@@ -46,10 +65,6 @@
 	margin-left: 0px !important;
 }
 
-.leaflet-control-layers {
-	background: rgba(255, 255, 255, 0.8);
-}
-
 .center {
 	display: block;
 	margin-left: auto;
@@ -57,3 +72,4 @@
 	/*width: 50px;*/
 	height: 35px;
 }
+
