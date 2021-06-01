@@ -10,7 +10,7 @@ https://geoportal.lneg.pt/pt/dados_abertos/servicos_wms/
 
 ---
 
-## Alternativa - conectar ao dados GeoJSON
+## Alternativa - conectar aos dados GeoJSON
 
 Exemplo com o [QGIS](https://www.qgis.org/)
 
