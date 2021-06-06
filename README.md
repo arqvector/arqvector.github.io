@@ -47,6 +47,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 - Fotogrametria
 - 3D
 - Cores de Munsell
+- Matriz - Graphviz
 
 
 ## Desenho; Fotografia; Base de Dados [![](www/css/img/external-link.png)](#arqvectorgithubio)
@@ -64,7 +65,6 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | ------------------------------------------- | -------------------------------------------------------------------------- |
 | » [OSGeo](https://www.osgeo.org/)           | [![](www/imagens/logos/osgeo.png)](https://www.osgeo.org/)                 |
 | » [QGIS](https://qgis.org/)                 | [![](www/imagens/logos/logo-1.png)](https://qgis.org/)                     |
-|   - Geometry Generator                      | » [Exemplos do QGIS Geometry Generator](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)|
 | » [PostgreSQL](https://www.postgresql.org/) | [![](www/imagens/logos/postgresql-80x80.png)](https://www.postgresql.org/) |
 | » [PostGIS](https://postgis.net/)           | [![](www/imagens/logos/postgis.jpg)](https://postgis.net/)                 |
 | » [Lizmap](https://www.lizmap.com/)         | [![](www/imagens/logos/lizmap-80x80.png)](https://www.lizmap.com/)         |
@@ -90,3 +90,38 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 ----
 
 # Cores de Munsell [![](www/css/img/external-link.png)](#arqvectorgithubio)
+https://munsell.com/faqs/list-of-colors-by-notation-name/
+----
+
+
+# Matriz - Graphviz
+https://edotor.net/
+http://magjac.com/graphviz-visual-editor/
+
+----
+# Outros
+[WebODM](https://github.com/OpenDroneMap/WebODM)
+[install Web OpenDroneMap (WebODM)](https://www.hatarilabs.com/ih-en/how-to-install-web-opendronemap-webodm-in-windows-with-docker)
+
+[ILIUM](http://www.ilium.archaeologica.eu.org/index.html)
+"ILIUM é um software científico para coletar, padronizar, visualizar, analisar e exportar dados arqueológicos, sejam provenientes de escavações ou coletados durante estudos arquitetônicos em elevação (ou seja, "estratigrafia vertical" em alguns países)."
+
+[ARK](https://ark.lparchaeology.com/about/ARK)
+The Archaeological Recording Kit) é um 'kit de ferramentas' baseado na web para a coleta, armazenamento e disseminação de dados arqueológicos. Inclui ferramentas de edição e criação de dados, visualização de dados e compartilhamento de dados, todas entregues por meio de um front-end baseado na web.
+
+
+[ArchAIDE Desktop](https://archaide-desktop.inera.it/home)
+O site ArchAIDE Desktop é o local onde parte os resultados do Projeto ArchAIDE são disponibilizados para a comunidade da Internet. Em particular, aqui você pode encontrar: a base de conhecimento (catálogos de formas de cerâmica, decorações e selos) usada como referência na classificação de cerâmica, a ferramenta de reconhecimento de imagem para classificar decorações em fragmentos de cerâmica, a ferramenta de reconhecimento de forma para identificar a forma para a que pertence um caco de cerâmica, a ferramenta de busca de selos para identificar os selos e, por último, mas não menos importante, as ferramentas de visualização de dados para analisar as informações de origem-ocorrência coletadas pelo projeto.
+https://github.com/barak-itkin/archaide-software
+
+----
+# Exemplos
+## QGIS
+[QGIS - Geometry Generator](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)
+
+## PostgreSQL | PostGIS
+### PostGIS Raster
+[PostGIS Raster](https://github.com/lcalisto/workshop-postgis-raster)
+[Calculos DEM](http://themagiscian.com/2016/11/28/dem-slope-calculations-bicycle-routing-postgis/)
+### Recursivo
+[postgresql_recursive.sql](https://gist.github.com/dankrause/76baa0ad73ff19fd39e861600c56a15d)
