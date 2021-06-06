@@ -95,11 +95,14 @@ https://munsell.com/faqs/list-of-colors-by-notation-name/
 
 
 # Matriz - Graphviz
+
 https://edotor.net/
+
 http://magjac.com/graphviz-visual-editor/
 
 ----
 # Outros
+
 [WebODM](https://github.com/OpenDroneMap/WebODM)
 [install Web OpenDroneMap (WebODM)](https://www.hatarilabs.com/ih-en/how-to-install-web-opendronemap-webodm-in-windows-with-docker)
 
@@ -116,12 +119,19 @@ https://github.com/barak-itkin/archaide-software
 
 ----
 # Exemplos
+
 ## QGIS
+
 [QGIS - Geometry Generator](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)
 
 ## PostgreSQL | PostGIS
+
 ### PostGIS Raster
+
 [PostGIS Raster](https://github.com/lcalisto/workshop-postgis-raster)
+
 [Calculos DEM](http://themagiscian.com/2016/11/28/dem-slope-calculations-bicycle-routing-postgis/)
+
 ### Recursivo
+
 [postgresql_recursive.sql](https://gist.github.com/dankrause/76baa0ad73ff19fd39e861600c56a15d)
