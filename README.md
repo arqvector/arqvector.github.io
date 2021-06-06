@@ -64,6 +64,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | ------------------------------------------- | -------------------------------------------------------------------------- |
 | » [OSGeo](https://www.osgeo.org/)           | [![](www/imagens/logos/osgeo.png)](https://www.osgeo.org/)                 |
 | » [QGIS](https://qgis.org/)                 | [![](www/imagens/logos/logo-1.png)](https://qgis.org/)                     |
+|   - Geometry Generator                      | » [Exemplos do QGIS Geometry Generator](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)|
 | » [PostgreSQL](https://www.postgresql.org/) | [![](www/imagens/logos/postgresql-80x80.png)](https://www.postgresql.org/) |
 | » [PostGIS](https://postgis.net/)           | [![](www/imagens/logos/postgis.jpg)](https://postgis.net/)                 |
 | » [Lizmap](https://www.lizmap.com/)         | [![](www/imagens/logos/lizmap-80x80.png)](https://www.lizmap.com/)         |
@@ -89,9 +90,3 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 ----
 
 # Cores de Munsell [![](www/css/img/external-link.png)](#arqvectorgithubio)
-
-----
-
-# QGIS - Geometry Generator
-
-» [https://gitlab.com/GIS-projects/qgis-geometry-generator-examples](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)
