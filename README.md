@@ -126,6 +126,11 @@ https://github.com/barak-itkin/archaide-software
 ----
 # Exemplos [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
+## Dados Abertos
+### Raster
+https://www.gebco.net/data_and_products/gridded_bathymetry_data/
+https://download.gebco.net/
+
 ## QGIS
 
 [QGIS - Geometry Generator](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)
