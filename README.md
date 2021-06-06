@@ -89,3 +89,9 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 ----
 
 # Cores de Munsell [![](www/css/img/external-link.png)](#arqvectorgithubio)
+
+----
+
+# QGIS - Geometry Generator
+
+» [https://gitlab.com/GIS-projects/qgis-geometry-generator-examples](https://gitlab.com/GIS-projects/qgis-geometry-generator-examples)
