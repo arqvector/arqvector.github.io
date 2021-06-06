@@ -24,6 +24,10 @@ https://arqvector.github.io/munsell/munsell_real.html
 
 * [Cores de Munsell](#cores-de-munsell-)
 
+* [Outros](#outros-)
+
+* [Exemplos](#exemplos-)
+
 ------
 
 # ARQVECTOR [![](www/css/img/external-link.png)](#arqvectorgithubio)
@@ -101,7 +105,7 @@ https://edotor.net/
 http://magjac.com/graphviz-visual-editor/
 
 ----
-# Outros
+# Outros [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
 [WebODM](https://github.com/OpenDroneMap/WebODM)
 [install Web OpenDroneMap (WebODM)](https://www.hatarilabs.com/ih-en/how-to-install-web-opendronemap-webodm-in-windows-with-docker)
@@ -118,7 +122,7 @@ O site ArchAIDE Desktop é o local onde parte os resultados do Projeto ArchAIDE 
 https://github.com/barak-itkin/archaide-software
 
 ----
-# Exemplos
+# Exemplos [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
 ## QGIS
 
