@@ -1,8 +1,8 @@
 # arqvector.github.io
 
-arqvector.github.io
+[arqvector.github.io](https://arqvector.github.io)
 
-[Ínicio](https://arqvector.github.io/index.html)
+[Ínicio](https://arqvector.github.io/www/index.html)
 
 [Munsell](https://arqvector.github.io/www/munsell/munsell.html)
 
@@ -102,9 +102,9 @@ https://munsell.com/faqs/list-of-colors-by-notation-name/
 
 # Matriz - Graphviz [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
-https://edotor.net/
+[edotor.net](https://edotor.net/)
 
-http://magjac.com/graphviz-visual-editor/
+[graphviz-visual-editor](http://magjac.com/graphviz-visual-editor/)
 
 ----
 # Outros [![](www/css/img/external-link.png)](#arqvectorgithubio)
