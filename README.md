@@ -4,9 +4,9 @@ arqvector.github.io
 
 https://arqvector.github.io/index.html
 
-https://arqvector.github.io/munsell/munsell.html
+https://arqvector.github.io/www/munsell/munsell.html
 
-https://arqvector.github.io/munsell/munsell_real.html
+https://arqvector.github.io/www/munsell/munsell_real.html
 
 ------
 
