@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!-- SP 2020/10/16 -->
+<html>
+<head>
+  <title>Percurso</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <!-- Leaflet (JS/CSS) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- D3.js -->
+  <script src="https://unpkg.com/d3@5.15.0/dist/d3.min.js" charset="utf-8"></script>
+  <!-- leaflet-gpx -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.js"></script>
+  <!-- Botão Fullscreen -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+  <!-- leaflet-elevation -->
+  <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation@1.1.1/dist/leaflet-elevation.min.css" />
+  <script src="https://unpkg.com/@raruto/leaflet-elevation@1.1.1/dist/leaflet-elevation.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- leaflet-locatecontrol -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.css" />
+  <script src="https://unpkg.com/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.js"></script>
+    <!-- css extra -->
+  <link rel="stylesheet" href="./../css/extra.css" />
+  </head>
+<body>
+  <div id="map"></div>
+  <div id="elevation-div" class="leaflet-control elevation"></div>
+
+  <div id="data-summary" class="data-summary">
+
+    <span class="totlen">
+      <span class="summarylabel">Dist: </span>
+      <span class="summaryvalue">0</span>
+    </span> &#65372; 
+
+    <span class="maxele">
+      <span class="summarylabel">Alt Max: </span>
+      <span class="summaryvalue">0</span>
+    </span> &#65372;
+
+    <span class="minele">
+      <span class="summarylabel">Alt Min: </span>
+      <span class="summaryvalue">0</span>
+    </span> &#65372;
+
+    <span class="gain">
+      <span class="summarylabel">Ganho: </span>
+      <span class="summaryvalue">0</span>
+    </span> &#65372;
+
+    <span class="loss">
+      <span class="summarylabel">Perda: </span>
+      <span class="summaryvalue">0</span>
+    </span>
+
+  </div>
+
+  <script>
+function scrollMap(position) {
+      // Scrolls the map so that it is centered at (position.coords.latitude, position.coords.longitude).
+    }
+
+    function handleError(error) {
+      // Update a div element with error.message.
+    }
+	
+	var geo_options = {
+	enableHighAccuracy: true, 
+	maximumAge        : 30000, 
+	timeout           : 27000
+	};
+
+    // Request repeated updates.
+    var watchId = navigator.geolocation.watchPosition(scrollMap, handleError, geo_options);
+
+    function buttonClickHandler() {
+      // Cancel the updates when the user clicks a button.
+      navigator.geolocation.clearWatch(watchId);
+    }
+
+var urlgpx = 'via/12-peniche-fozfoarelho.gpx';
+// var urlbasept = 'geo/portugal.geojson';
+// var urlupr ='pr.geojson';
+
+var opts = {
+      map: {
+        center: [39.36321, -9.18935],
+		minZoom: 12,
+		maxZoom: 21,
+        markerZoomAnimation: false,
+        zoomControl: false,
+      },
+      zoomControl: {
+        position: 'topleft',
+      },
+      elevationControl: {
+        data: urlgpx,
+        options: {
+		  position: "topright",
+          theme: "custom-theme", // CHANGE: your custom-theme name
+          elevationDiv: "#elevation-div",
+		  useHeightIndicator: true,
+		  collapsed: true,
+          detachedView: true,
+          summary: false,
+		  followPositionMarker: true,
+		  autohide: true,
+          downloadLink:false,
+        },
+      },
+	  // Localização
+      locateControl: {
+        options: {
+	      position: "topleft",
+		  strings: {
+            enableHighAccuracy: true, 
+            setView: true,
+            keepCurrentZoomLevel: true,
+            watch:false,
+            timeout: 1000,
+            maximumAge: 1000
+			},
+        },
+      },
+      layersControl: {
+        options: {
+          collapsed: true,
+        },
+      },
+      osm: {
+        url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        options: {
+          attribution: '&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors',
+        },
+      },
+    };
+
+// Muda rato // teste
+function style(feature) {
+	return {
+		weight: 2,
+		opacity: 1,
+		color: 'white',
+		dashArray: '3',
+		fillOpacity: 0.7,
+		fillColor: "blue"
+	};
+}
+
+function highlightFeature(e) {
+	var layer = e.target;
+
+	layer.setStyle({
+		weight: 5,
+		color: '#666',
+		dashArray: '',
+		fillOpacity: 0.7
+	});
+
+	if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		layer.bringToFront();
+	}
+}
+
+function resetHighlight(e) {
+	geojson.resetStyle(e.target);
+}
+
+function zoomToFeature(e) {
+	map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseout: resetHighlight,
+		mouseover: highlightFeature,
+		click: zoomToFeature
+
+	});
+}
+//////
+
+// Funções
+function forEachFeature(feature, layer) {
+	layer.on('mouseout', function () {
+		this.setStyle(estlinha2);
+		this.closePopup();
+		layer.on({
+			click: zoomToFeature
+		});
+	});
+
+	//  zoomToFeature, // para fazer zoom para a geometria
+	layer.bindPopup(popupContent);
+	layer.on('mouseover', function () {
+		this.setStyle({
+			//color: 'red'
+			"opacity": "0.5"
+		}),
+		popupContent;
+		this.openPopup();
+	});
+	// Legenda popup geoJSON
+	var popupContent = "<p><b>" +
+		feature.properties.Name + "</b></br>" +
+		feature.properties.description + "</br>" +
+		'<a href="' + feature.properties.link + '" target="_blank"></a></p>';
+
+	if (feature.properties && feature.properties.popupContent) {
+		popupContent += feature.properties.popupContent;
+	}
+	layer.bindPopup(popupContent);
+};
+
+// Estilos geoJSON
+var estlinhabase = {
+	//"fillColor": "#00",
+	"color": "#3388ff",
+	"weight": 0,
+	"opacity": 0.9,
+	//"fillOpacity": 0.1
+};
+
+var estlinha2 = {
+	"color": "#ff7f00",
+	"weight": 4,
+	"opacity": 0.9,
+	"dashArray": "10, 7", 
+	"dashOffset": "0"
+};
+
+// Base portugal
+var basept = L.geoJSON(null, {
+		style: estlinhabase
+	});
+
+// Percurso alternativo
+var upr = L.geoJSON(null, {
+onEachFeature: forEachFeature,
+		style: estlinha2
+	});
+
+    var map = new L.Map('map', opts.map);
+
+    var baseLayers = {};
+    baseLayers.OpenStreetMap = new L.TileLayer(opts.osm.url, opts.osm.options);
+
+    var controlZoom = new L.Control.Zoom(opts.zoomControl);
+    var controlElevation = L.control.elevation(opts.elevationControl.options);
+    var controlLayer = L.control.layers(baseLayers, null, opts.layersControl.options);
+	// Localização
+    var controlLocate = L.control.locate(opts.locateControl.options); 
+
+// // Linha alternativa
+// $.getJSON(urlupr, function (data) {
+// 	upr.addData(data);
+// });
+// upr.addTo(map);
+
+// // Portugal basept
+// $.getJSON(urlbasept, function (data) {
+// 	basept.addData(data);
+// });
+// basept.addTo(map);
+
+    controlZoom.addTo(map);
+    controlLayer.addTo(map);
+    controlElevation.addTo(map);
+
+    map.addLayer(baseLayers.OpenStreetMap);
+
+    controlElevation.on('eledata_loaded', function(e) {
+      var q = document.querySelector.bind(document);
+      var track = e.track_info;
+      var layer = e.layer;
+
+      controlLayer.addOverlay(e.layer, e.name);
+
+      // Default Summary info
+      q('.totlen .summaryvalue').innerHTML = (layer.get_distance() / 1000 ).toFixed(2) + " km";
+      q('.maxele .summaryvalue').innerHTML = layer.get_elevation_max().toFixed(2) + " m";
+      q('.minele .summaryvalue').innerHTML = layer.get_elevation_min().toFixed(2) + " m";
+      // // Custom Summary info
+      q('.gain .summaryvalue').innerHTML = "+" + layer.get_elevation_gain().toFixed(2) + " m";
+      q('.loss .summaryvalue').innerHTML = "-" + layer.get_elevation_loss().toFixed(2) + " m";
+    });
+
+controlElevation.load(opts.elevationControl.data);
+
+// Botão Fullscreen
+map.addControl(new L.Control.Fullscreen());
+
+// Localização
+controlLocate.addTo(map);
+
+// Logotipo
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = './../css/img/logo_footer.png';
+        img.style.width = '100px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+// // Notas
+// var src = 'ARQVECTOR';
+// var title = L.control({
+// 		position: 'bottomleft'
+// 	});
+// title.onAdd = function (map) {
+// 	this._div = L.DomUtil.create('div', 'ctl src');
+// 	this.update();
+// 	return this._div;
+// };
+// title.update = function (props) {
+// 	this._div.innerHTML = src;
+// };
+// title.addTo(map);
+
+// Escala
+L.control.scale().addTo(map);
+
+// Raruto
+map.attributionControl.addAttribution('<a href="https://github.com/Raruto/leaflet-elevation">Raruto</a>');
+  </script>
+</body>
+
+</html>

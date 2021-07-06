@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Mapas Base</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
+
+<!-- Leaflet (JS/CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+<!-- leaflet-providers -->
+<!-- https://leaflet-extras.github.io/leaflet-providers/preview/ -->
+  <!-- <script src="js/leaflet-providers.js"></script> -->
+
+<!-- Estilos personalizados -->
+<link rel="stylesheet" href="./../css/mapas.css">
+	
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+// Base layers
+//  .. OpenStreetMap
+var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. OpenTopoMap
+var otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. Esri DGT
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. CartoDB Positron
+var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 1,
+		maxZoom: 21
+	});
+
+//  .. OpenStreetMap.HOT
+var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 21,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+
+//  .. CyclOSM
+var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+	maxZoom: 20,
+	attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+
+//  .. Stamen.Terrain
+var Stamen_Terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 18,
+	ext: 'png'
+});
+//  .. Stamen.TerrainBackground
+var Stamen_TerrainBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 18,
+	ext: 'png'
+});
+
+//  .. HikeBike.HillShading
+var HikeBike_HillShading = L.tileLayer('https://tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png', {
+	maxZoom: 15,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+
+//  .. OSM Mapbox attribution
+var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+//  .. OSM Mapbox grayscale
+var grayscale = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
+		//  .. OSM Mapbox streets
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+		
+
+
+// Config Mapa //
+var map = L.map('map', {
+            zoomControl: true,
+			//zoom: 13,
+			//attributionControl: false,
+			//dragging: false,
+			//zoomAnimation: false,
+			//fadeAnimation: false,
+			//center: [39.36321, -9.18935],
+			maxZoom:21, 
+			minZoom:1,
+			
+			layers: [grayscale]
+        }).fitBounds([[36.9617104661777631, -9.5170290804540656], [42.1543111274080005, -6.1891593074828766]]);
+
+// Definição de legenda layers base //
+var basemaps = {
+	"OpenStreetMap": osm,
+	"OpenTopoMap": otm,
+	"Satélite": esri,
+	"CartoDB Positron": cartodb,
+	"OpenStreetMap HOT": OpenStreetMap_HOT,
+	"CyclOSM": CyclOSM,
+	"Stamen Terrain": Stamen_Terrain,
+	"Stamen TerrainBackground": Stamen_TerrainBackground,
+	"HikeBike HillShading": HikeBike_HillShading,
+	"Grayscale": grayscale,
+	"Streets": streets,
+}
+
+// Definição de legenda "layers" que aparecem de no arranque //
+	var overlaymaps = {
+		//"Património Inventariado": basedata,
+		//"s":basedata,
+	}
+
+
+// Botão Fullscreen
+	//map.addControl(new L.Control.Fullscreen());
+	
+// Localização
+	//map.addControl(new L.control.locate());
+
+// Logotipo
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = './../css/img/logo_footer.png';
+        img.style.width = '100px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+// Notas
+	//var src = 'Arqvector';
+	//var title = L.control({
+	//		position: 'bottomleft'
+	//	});
+	//title.onAdd = function (map) {
+	//	this._div = L.DomUtil.create('div', 'ctl src');
+	//	this.update();
+	//	return this._div;
+	//};
+	//title.update = function (props) {
+	//	this._div.innerHTML = src;
+	//};
+	//title.addTo(map);
+
+// Escala
+	L.control.scale().addTo(map);
+	
+
+
+// Layer control - Adicionar layer base
+	L.control.layers(basemaps, overlaymaps, {
+		collapsed: false
+	}).addTo(map);
+
+</script>
+
+
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <head>
-<title>Mapa Geral Turismo</title>
+<title>Auto zoom</title>
 
 <!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -388,21 +388,42 @@ map.addControl(new L.Control.Fullscreen());
 // Localização
 var controlLocate = L.control.locate(opts.locateControl.options).addTo(map);
 
+// Logotipo
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = './../css/img/logo_footer.png';
+        img.style.width = '100px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'bottomleft' }).addTo(map);
 
 // Notas
-var src = 'Município de Óbidos & Turismo';
-var title = L.control({
-		position: 'bottomleft'
-	});
-title.onAdd = function (map) {
-	this._div = L.DomUtil.create('div', 'ctl src');
-	this.update();
-	return this._div;
-};
-title.update = function (props) {
-	this._div.innerHTML = src;
-};
-title.addTo(map);
+//var src = 'Município de Óbidos & Turismo';
+//var title = L.control({
+//		position: 'bottomleft'
+//	});
+//title.onAdd = function (map) {
+//	this._div = L.DomUtil.create('div', 'ctl src');
+//	this.update();
+//	return this._div;
+//};
+//title.update = function (props) {
+//	this._div.innerHTML = src;
+//};
+//title.addTo(map);
 
 // Escala
 L.control.scale().addTo(map);

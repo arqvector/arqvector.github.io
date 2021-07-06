@@ -1,10 +1,8 @@
-<!DOCTYPE html><link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.css" />
-    <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8"/>
-    <title>Leaflet.draw vector editing handlers</title>
+    <title>Desenhar</title>
 	
 	<!-- Leaflet (JS/CSS) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -92,6 +90,28 @@ map.on(L.Draw.Event.CREATED, function (event) {
 
 	drawnItems.addLayer(layer);
 });
+
+// Logotipo
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = './../css/img/logo_footer.png';
+        img.style.width = '100px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'bottomleft' }).addTo(map);
 
 // Botão Fullscreen
 map.addControl(new L.Control.Fullscreen());

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Rota da Costa Atlântica</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style>
+		html,
+		body,
+		#map {
+			height: 100%;
+			width: 100%;
+			padding: 0px;
+			margin: 0px;
+		}
+	</style>
+
+	<!-- D3.js -->
+	<script src="https://unpkg.com/d3@4.13.0/build/d3.min.js" charset="utf-8"></script>
+
+	<!-- Leaflet (JS/CSS) -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.2/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"></script>
+
+	<!-- leaflet-geometryutil -->
+	<script src="https://unpkg.com/leaflet-geometryutil@0.9.1/src/leaflet.geometryutil.js"></script>
+
+	<!-- leaflet-distance-marker -->
+	<link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation@0.3.9/libs/leaflet-distance-marker.min.css" />
+	<script src="https://unpkg.com/@raruto/leaflet-elevation@0.3.9/libs/leaflet-distance-marker.min.js"></script>
+
+	<!-- leaflet-gpx -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.js"></script>
+
+	<!-- leaflet-gpxgroup -->
+	<script src="https://unpkg.com/@raruto/leaflet-elevation@0.3.9/libs/leaflet-gpxgroup.min.js"></script>
+
+	<!-- leaflet-elevation -->
+	<link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation@0.3.9/leaflet-elevation.min.css" />
+	<script src="https://unpkg.com/@raruto/leaflet-elevation@0.3.9/leaflet-elevation.min.js"></script>
+
+	<!-- leaflet-minimap -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.css" />
+	<script src="https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js"></script>
+
+	<!-- leaflet-locatecontrol -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.css" />
+	<script src="https://unpkg.com/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.js"></script>
+
+	<!-- leaflet-pegman -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-pegman@0.0.8/leaflet-pegman.css" />
+	<script src="https://unpkg.com/leaflet-pegman@0.0.8/leaflet-pegman.js"></script>
+
+	<style>
+	.leaflet-control-locate a {
+		background-image: url(https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-locate.png);
+	}
+	.leaflet-tooltip {
+		font-weight: 700;
+	}
+	</style>
+
+</head>
+
+<body>
+
+	<div id="map"></div>
+
+	<script>
+	var opts = {
+		map: {
+			center: [39.36321, -9.18935],
+			zoom: 5,
+			zoomControl: false,
+		},
+		zoomControl: {
+			position: 'bottomright',
+		},
+		otmLayer: {
+			url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+			options: {
+				maxZoom: 17,
+				attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+			},
+		},
+		osmLayer: {
+			url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+			options: {
+				maxZoom: 19,
+				attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+			}
+		},
+		satelliteLayer: {
+			url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+			options: {
+				maxZoom: 18,
+				attribution: '&copy; <a href="http://www.esri.com/">Esri</a>',
+			},
+		},
+		layersControl: {
+			options: {
+				position: 'topleft',
+				collapsed: false,
+			},
+		},
+		scaleControl: {
+			options: {
+				width: 200,
+				position: 'bottomright',
+				imperial: false,
+			},
+		},
+		miniMapControl: {
+			options: {
+				position: 'bottomleft',
+				toggleDisplay: false,
+				width: 75,
+				height: 75,
+				aimingRectOptions: {
+					color: '#2d2d2d',
+					weight: 0.1,
+				},
+				shadowRectOptions: {
+					color: '#000000',
+					weight: 0.5,
+					opacity: 0,
+					fillOpacity: 0,
+				},
+			},
+		},
+		pegmanControl: {
+			options: {
+				position: 'bottomright',
+				clickableStreetViewLayer: true,
+				theme: "leaflet-pegman-v3-small",
+			},
+		},
+		locateControl: {
+			options: {
+				position: "bottomright",
+			},
+		},
+		pois: {
+			icon: {
+				iconUrl: 'https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-poi.png',
+				iconSize: [12, 12],
+			},
+		},
+		};
+
+		//  .. OSM Mapbox attribution
+var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+//  .. OSM Mapbox grayscale
+var grayscale = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
+		//  .. OSM Mapbox streets
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+
+		// percurso gpx
+		var tracks = [
+		"via/01-VilaRealDeSantoAntónio-QuintaDoLago-2018.gpx",
+		"via/02-QuintaDoLago-Portimão-2018.gpx",
+		"via/03-portimao-sagres.gpx",
+		"via/04-sagres-aljezur.gpx",
+		"via/05.gpx",
+		"via/06.gpx",
+		"via/07-melides-setubal.gpx",
+		"via/08.gpx",
+		"via/09-Lisboa-AzenhasDoMar.gpx",
+		"via/10-azenhasdomar-santacruz.gpx",
+		"via/11-santacruz-peniche.gpx",
+		"via/12-peniche-fozfoarelho.gpx",
+		"via/13-fozdoarelho-praiadavieira.gpx",
+		"via/14-praiadavieira-figueiradafoz.gpx",
+		"via/15-figueiradafoz-aveiro.gpx",
+		"via/16-Aveiro-Porto-Gaia-201809.gpx",
+		"via/17-Porto-Gaia-Esposende-2017.gpx",
+		"via/18-esposende-caminha-2017-10.gpx",
+		];
+		
+		// pontos de interesse
+		var pois = [
+		  {latlng:[39.36321, -9.18935], name:"Óbidos"},
+		  {latlng:[39.463, -9.189], name:"Bouro"},
+
+		];
+
+		var map = L.map('map', opts.map);
+
+		var baseLayers = {};
+
+		baseLayers["ESRI World Imagery"] = L.tileLayer(opts.satelliteLayer.url, opts.satelliteLayer.options);
+		baseLayers["OpenTopoMap"] = new L.TileLayer(opts.otmLayer.url, opts.otmLayer.options);
+		baseLayers["OpenStreetMap"] = new L.TileLayer(opts.osmLayer.url, opts.osmLayer.options);
+		baseLayers["Grayscale"] = grayscale;
+		
+
+// Logotipo
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = './../css/img/logo_footer.png';
+        img.style.width = '100px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+
+		var controlZoom = new L.Control.Zoom(opts.zoomControl);
+	  var controlLayer = L.control.layers(baseLayers, null, opts.layersControl.options);
+		var controlScale = L.control.scale(opts.scaleControl.options);
+		var controlMiniMap = new L.Control.MiniMap(new L.TileLayer(opts.osmLayer.url, opts.osmLayer.options), opts.miniMapControl.options);
+		var controlPegman = new L.Control.Pegman(opts.pegmanControl.options);
+		var controlLocate = L.control.locate(opts.locateControl.options);
+
+		var routes = L.gpxGroup(tracks, {
+			points: pois,
+			points_options: opts.pois,
+			elevation: true,
+			elevation_options: {
+				detachedView: false,
+				collapsed: false,
+				autohide: false,
+				width: 500,
+			},
+			legend: false,
+			distanceMarkers: true,
+		});
+
+		controlLayer.addTo(map);
+		controlScale.addTo(map);
+		controlZoom.addTo(map);
+		controlPegman.addTo(map);
+		controlLocate.addTo(map);
+		controlMiniMap.addTo(map);
+
+		routes.addTo(map);
+
+		map.addLayer(baseLayers["Grayscale"]);
+
+		map.attributionControl.addAttribution('&copy; <a href="https://github.com/adoroszlai">Attila Doroszlai</a>');
+		
+		// Raruto
+		map.attributionControl.addAttribution('<a href="https://github.com/Raruto/leaflet-elevation">Raruto</a>');
+	</script>
+
+</body>
+
+</html>
