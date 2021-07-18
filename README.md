@@ -8,6 +8,8 @@
 
 [Munsell real](https://arqvector.github.io/www/munsell/munsell_real.html)
 
+[Dados do portal leng.pt](https://arqvector.github.io/data/lneg/)
+
 ------
 
 * [Início](#arqvector-)
