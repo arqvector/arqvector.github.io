@@ -130,9 +130,9 @@ https://github.com/barak-itkin/archaide-software
 
 ### Raster
 
-https://www.gebco.net/data_and_products/gridded_bathymetry_data/
+[gridded_bathymetry_data](https://www.gebco.net/data_and_products/gridded_bathymetry_data/)
 
-https://download.gebco.net/
+[gebco](https://download.gebco.net/)
 
 ## QGIS
 
