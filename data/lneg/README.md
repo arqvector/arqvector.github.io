@@ -19,6 +19,7 @@ Exemplo com o [QGIS](https://www.qgis.org/)
 ### Recursos Geotérmicos
 
 [recursos_geotermicos.geojson](https://github.com/arqvector/arqvector.github.io/blob/main/data/lneg/recursos_geotermicos.geojson "recursos_geotermicos.geojson")
+[Link para qgis](https://arqvector.github.io/data/lneg/recursos_geotermicos.geojson)
 
 ---
 
