@@ -1,12 +1,14 @@
 # arqvector.github.io
 
-arqvector.github.io
+[arqvector.github.io](https://arqvector.github.io)
 
-[Ínicio](https://arqvector.github.io/index.html)
+[Ínicio](https://arqvector.github.io/www/index.html)
 
 [Munsell](https://arqvector.github.io/www/munsell/munsell.html)
 
 [Munsell real](https://arqvector.github.io/www/munsell/munsell_real.html)
+
+[Dados do portal leng.pt](https://arqvector.github.io/data/lneg/)
 
 ------
 
@@ -76,6 +78,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | » [Lizmap](https://www.lizmap.com/)         | [![](www/imagens/logos/lizmap-80x80.png)](https://www.lizmap.com/)         |
 | » [MapGuide](https://mapguide.osgeo.org/)   | [![](www/imagens/logos/mapguide-80x80.jpg)](https://mapguide.osgeo.org/)   |
 | » [GDAL](https://gdal.org/)                 | [![](www/imagens/logos/gdal-80x80.png)](https://gdal.org/)                 |
+| » [Geosetter](https://geosetter.de/)        | [![](www/imagens/logos/geosetter.png)](https://geosetter.de/)              |
 
 
 ## Fotogrametria e 3D [![](www/css/img/external-link.png)](#arqvectorgithubio)
@@ -102,9 +105,9 @@ https://munsell.com/faqs/list-of-colors-by-notation-name/
 
 # Matriz - Graphviz [![](www/css/img/external-link.png)](#arqvectorgithubio)
 
-https://edotor.net/
+[edotor.net](https://edotor.net/)
 
-http://magjac.com/graphviz-visual-editor/
+[graphviz-visual-editor](http://magjac.com/graphviz-visual-editor/)
 
 ----
 # Outros [![](www/css/img/external-link.png)](#arqvectorgithubio)
@@ -121,7 +124,12 @@ The Archaeological Recording Kit) é um 'kit de ferramentas' baseado na web para
 
 [ArchAIDE Desktop](https://archaide-desktop.inera.it/home)
 O site ArchAIDE Desktop é o local onde parte os resultados do Projeto ArchAIDE são disponibilizados para a comunidade da Internet. Em particular, aqui você pode encontrar: a base de conhecimento (catálogos de formas de cerâmica, decorações e selos) usada como referência na classificação de cerâmica, a ferramenta de reconhecimento de imagem para classificar decorações em fragmentos de cerâmica, a ferramenta de reconhecimento de forma para identificar a forma para a que pertence um caco de cerâmica, a ferramenta de busca de selos para identificar os selos e, por último, mas não menos importante, as ferramentas de visualização de dados para analisar as informações de origem-ocorrência coletadas pelo projeto.
-https://github.com/barak-itkin/archaide-software
+[https://github.com/barak-itkin/archaide-software](https://github.com/barak-itkin/archaide-software)
+
+[ishtar-archeo.net](https://ishtar-archeo.net/)
+"Étienne Loks, cofundador da Iggdrasil, é o principal desenvolvedor do software Ishtar, software de gestão de dados arqueológicos e inventário, sob licença AGPL. Ishtar é um projeto de base de dados que visa gerir dados e documentação (incluindo móveis) de intervenções arqueológicas, garantindo a máxima rastreabilidade das informações.
+Consulte o site da comunidade para obter mais informações: https://ishtar-archeo.net.
+A Iggdrasil oferece diversos serviços (hospedagem, assistência, treinamento, desenvolvimento) em torno do software." in https://www.iggdrasil.net/
 
 ----
 # Exemplos [![](www/css/img/external-link.png)](#arqvectorgithubio)
@@ -130,9 +138,9 @@ https://github.com/barak-itkin/archaide-software
 
 ### Raster
 
-https://www.gebco.net/data_and_products/gridded_bathymetry_data/
+[gridded_bathymetry_data](https://www.gebco.net/data_and_products/gridded_bathymetry_data/)
 
-https://download.gebco.net/
+[gebco](https://download.gebco.net/)
 
 ## QGIS
 

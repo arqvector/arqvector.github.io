@@ -20,6 +20,8 @@ Exemplo com o [QGIS](https://www.qgis.org/)
 
 [recursos_geotermicos.geojson](https://github.com/arqvector/arqvector.github.io/blob/main/data/lneg/recursos_geotermicos.geojson "recursos_geotermicos.geojson")
 
+[Link para qgis](https://arqvector.github.io/data/lneg/recursos_geotermicos.geojson)
+
 ---
 
 # Serviços WMS
