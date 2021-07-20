@@ -78,6 +78,7 @@ Este regulamento “alarga o âmbito de aplicação da Lei n.º 36/2011, de 21 d
 | » [Lizmap](https://www.lizmap.com/)         | [![](www/imagens/logos/lizmap-80x80.png)](https://www.lizmap.com/)         |
 | » [MapGuide](https://mapguide.osgeo.org/)   | [![](www/imagens/logos/mapguide-80x80.jpg)](https://mapguide.osgeo.org/)   |
 | » [GDAL](https://gdal.org/)                 | [![](www/imagens/logos/gdal-80x80.png)](https://gdal.org/)                 |
+| » [Geosetter](https://geosetter.de/)        | [![](www/imagens/logos/geosetter.png)](https://geosetter.de/)              |
 
 
 ## Fotogrametria e 3D [![](www/css/img/external-link.png)](#arqvectorgithubio)
