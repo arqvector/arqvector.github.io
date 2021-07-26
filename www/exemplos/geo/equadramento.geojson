@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "paimogo",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 3, "designacao": "Enquadramento" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -9.343272628139609, 39.293001393951904 ], [ -9.325887149243698, 39.293085818570603 ], [ -9.325705682195816, 39.286558097035702 ], [ -9.343158616013186, 39.286378004916862 ], [ -9.343272628139609, 39.293001393951904 ] ] ] } }
+]
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Paimogo</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/> -->
+    <!-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script> -->
+	  <!-- Leaflet (JS/CSS) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- Leaflet-UI -->
+  <!-- <script src="https://unpkg.com/leaflet-ui@latest/dist/leaflet-ui.js"></script> -->
+  <!-- Botão Fullscreen -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+  <!-- leaflet-elevation -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation@1.1.1/dist/leaflet-elevation.min.css" /> -->
+  <!-- <script src="https://unpkg.com/@raruto/leaflet-elevation@1.1.1/dist/leaflet-elevation.min.js"></script> -->
+  <!-- pesquisa -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.css" />
+  <script src="https://unpkg.com/leaflet-search@2.9.8/dist/leaflet-search.src.js"></script>
+  
+  <!-- Pesquisa localidades -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+ <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> 
+ 
+  <!-- leaflet-locatecontrol -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.css" />
+  <script src="https://unpkg.com/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.js"></script>
+  <!-- css extra -->
+  <link rel="stylesheet" href="../css/extra.css" />
+   	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/leaflet.snogylop@0.4.0/src/leaflet.snogylop.min.js"></script>
+<style>
+.leaflet-control-locate a {
+	background-image: url(https://unpkg.com/@raruto/leaflet-elevation@0.3.9/images/elevation-locate.png);
+} 
+	  html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    #map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+    height: 100%;
+	width: 100%;
+	z-index: 0;
+    position:absolute;
+      }
+    #autocomplete {
+	padding: 3px 5px 2px 10px !important;
+	background: rgba(255, 255, 255, 0.3) !important;
+	border-radius: 3px;/**/
+	text-align: left;
+    z-index: 100;
+	position:relative;
+    }
+/* full size */
+
+.ctl {
+	padding: 2px 10px 2px 10px;
+	background: white;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	text-align: right;
+}
+
+.title {
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.src {
+	padding: 0px 5px 0px 5px !important;
+	border-radius: 0px !important;
+	font-size: 8pt;
+	margin-bottom: 0px !important;
+	margin-left: 0px !important;
+}
+
+.leaflet-control-layers {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	/*width: 50px;*/
+	height: 35px;
+}
+
+</style>	
+</head>
+
+<body>
+
+<div class="ui-widget"  style="text-align:left; padding: 10px 10px 20px 50px;">
+	      <input id="autocomplete" placeholder="Pesquisar: Designação">
+	</div> 
+<div id="map"></div>
+<script>
+function scrollMap(position) {
+      // Scrolls the map so that it is centered at (position.coords.latitude, position.coords.longitude).
+    }
+
+    function handleError(error) {
+      // Update a div element with error.message.
+    }
+	
+	var geo_options = {
+	enableHighAccuracy: true, 
+	maximumAge        : 30000, 
+	timeout           : 27000
+	};
+
+    // Request repeated updates.
+    var watchId = navigator.geolocation.watchPosition(scrollMap, handleError, geo_options);
+
+    function buttonClickHandler() {
+      // Cancel the updates when the user clicks a button.
+      navigator.geolocation.clearWatch(watchId);
+    }
+	
+/* **** Leaflet **** */
+var opts = {
+// Localização
+    locateControl: {
+	  options: {
+	    position: "topleft",
+		strings: {
+            enableHighAccuracy: true, 
+			},
+        },
+      },
+    };
+// Base layers
+//  .. OpenStreetMap
+var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. OpenTopoMap
+var otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. Esri DGT
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. CartoDB Positron
+var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+////var map = L.map('map'//).setView([39.36321, -9.18935], 13);
+//var map = L.map('map', {
+//
+//    center: [39.36321, -9.18935],
+//    zoom: 5,
+//    // Optional customizations
+//    mapTypeId: 'topo',
+//    mapTypeIds: ['streets', 'terrain', 'satellite', 'topo'],
+//	gestureHandling: true,
+//    zoomControl: true,
+//    pegmanControl: true,
+//    locateControl: true,
+//    fullscreenControl: true,
+//    layersControl: true,
+//    minimapControl: true,
+//    editInOSMControl: true,
+//    loadingControl: true,
+//    searchControl: true,
+//    disableDefaultUI: false,
+//  });
+//  map.once('idle',function(){ /* Waiting for map init */});
+
+// Caminho para camadas GeoJSON //
+// mesmo caminho para o local do ficheiro HTML.
+var urlbasept = 'geo/equadramento.geojson';
+var url = 'geo/paimogo.geojson';  // my GeoJSON data source, in this case a static file not a live PHP data feed.
+var arr = [];
+var arr1 = [];
+
+  // Initialize autocomplete with empty source.
+  $( "#autocomplete" ).autocomplete();
+
+// Estilos geoJSON
+var estlinhabase = {
+	//"fillColor": "#00",
+	"color": "#3388ff",
+	"weight": 0,
+	"opacity": 0.9,
+	//"fillOpacity": 0.1
+};
+
+// Ver no mapa
+// Base portugal
+var basept = L.geoJSON(null, {
+		style: estlinhabase
+		, invert: true
+	});
+var basedata = L.geoJSON(null, {
+		style: estlinhabase
+	});
+
+// Map //
+var map = L.map('map', {
+		//center: [38.3628700758, -9.1520240589],
+		//center: [39.363786, -9.185733],
+		center: [39.289870, -9.334599],
+		minZoom: 12,
+		maxZoom: 21,
+		layers: [esri]
+	});
+	
+//	var featuresLayer = new L.GeoJSON(data, {
+//			//style: function(feature) {
+//			//	return {color: feature.properties.color };
+//			//},
+//			onEachFeature: function(feature, marker) {
+//				marker.bindPopup('<h4 style="color:'//+feature.properties.color+'">'
+//				+ feature.properties.designacao +'</h4>');
+//			}
+//		});
+//
+//	map.addLayer(featuresLayer);
+//
+//	var searchControl = new L.Control.Search({
+//		layer: featuresLayer,
+//		propertyName: 'designacao',
+//		marker: false,
+//		moveToLocation: function(latlng, title, map) {
+//			//map.fitBounds( latlng.layer.getBounds() );
+//			var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+//  			map.setView(latlng, zoom); // access the zoom
+//		}
+//	});
+//
+//	searchControl.on('search:locationfound', function(e) {
+//		//console.log('search:locationfound', );
+//		//map.removeLayer(this._markerSearch)
+//		//e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
+//		if(e.layer._popup)
+//			e.layer.openPopup();
+//	}).on('search:collapsed', function(e) {
+//
+//		featuresLayer.eachLayer(function(layer) {	//restore feature color
+//			featuresLayer.resetStyle(layer);
+//		});	
+//	});
+//	
+//	map.addControl( searchControl );  //inizialize search control	
+
+//Leaflet Search with OSM Geocode
+
+
+// Definição de legenda layers base //
+var basemaps = {
+	"OpenStreetMap": osm,
+	"OpenTopoMap": otm,
+	"Satélite": esri,
+	"CartoDB Positron": cartodb,
+}
+
+// Definição de legenda "layers" que aparecem de no arranque //
+var overlaymaps = {
+	//"Património Inventariado": basedata,
+	//"s":basedata,
+}
+
+
+// Carregar GeoJSON e criar features. //
+// Portugal basept
+$.getJSON(urlbasept, function (data) {
+	basept.addData(data);
+});
+basept.addTo(map);
+
+//$.getJSON(urlsipap, function (data) {
+//	basedata.addData(data);
+//});
+//basedata.addTo(map);
+
+
+//// Ver Coordenadas	
+//	var popup = L.popup();
+//
+//	function onMapClick(e) {
+//		popup
+//			.setLatLng(e.latlng)
+//			.setContent("Coordenadas " + e.latlng.toString())
+//			.openOn(map);
+//	}
+//
+//	map.on('click', onMapClick);
+
+    //var controlLocate = L.control.locate(opts.locateControl.options);	
+// Botão Fullscreen
+//	map.addControl(new L.Control.Fullscreen());
+
+//var searchLayer = L.layerGroup().addTo(map);
+//... adding data in searchLayer ...
+//map.addControl( new L.Control.Search({layer: searchLayer}) );
+//searchLayer is a L.LayerGroup contains searched markers
+	
+// Set style function that sets fill color property
+function style(feature) {
+    return {
+        fillColor: 'green', 
+        fillOpacity: 0.5,  
+        weight: 2,
+        opacity: 1,
+        color: '#666',
+        dashArray: '3'
+    };
+}
+	var highlight = {
+		'fillColor': 'yellow',
+		'weight': 2,
+		'opacity': 1
+	};
+
+
+function highlightFeature(e) {
+	var layer = e.target;
+
+	layer.setStyle({
+		weight: 6,
+		//color: '#ff7f00',
+		//dashArray: '',
+		fillOpacity: 0.7
+	});
+
+	if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		//layer.bringToFront(highlight);
+	}
+}
+
+function resetHighlight(e) {
+	geojson.resetStyle(e.target);
+	layer.setStyle(style);
+}
+
+function zoomToFeature(e) {
+	map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseout: resetHighlight,
+		mouseover: highlightFeature,
+		click: zoomToFeature
+
+	});
+}
+	
+function forEachFeature(feature, layer) {
+layer.on('mouseout', function () {
+		this.setStyle({
+			//color: 'red'
+			"opacity": 1,
+			"weight": 2
+		});
+		//this.closePopup();
+		layer.on({
+			click: zoomToFeature
+		});
+	});
+          // Tagging each state poly with their name for the search control.
+          layer._leaflet_id = feature.properties.designacao;
+
+          var popupContent = "<p><b>" +
+		feature.properties.designacao + "</b></br>" +
+		feature.properties.obs + "</br>" +
+		//'<img src="OBD.svg" class="center">' +
+		//'<a href="' + feature.properties.link + '" target="_blank">Fonte monumentos.pt</a>
+		'</p>';
+
+          layer.bindPopup(popupContent);
+		  layer.on('mouseover', function () {
+		           this.setStyle({
+		           	//color: 'red'
+		           	"opacity": "0.6",
+		           	"weight": 8
+		           }),
+		           popupContent;
+		           this.openPopup();
+	               });
+
+          layer.on("click", function (e) { 
+              stateLayer.setStyle(style); //resets layer colors
+              //layer.setStyle(highlight).bringToFront();  //highlights selected.
+          }); 
+}
+
+	
+// Null variable that will hold layer
+var stateLayer = L.geoJson(null, {onEachFeature: forEachFeature
+, style: style
+});
+
+	$.getJSON(url, function(data) {
+        stateLayer.addData(data);
+	
+        for (i = 0; i < data.features.length; i++) {  //loads State Name into an Array for searching
+            arr1.push({label:data.features[i].properties.designacao, value:""});
+        }
+       addDataToAutocomplete(arr1);  //passes array for sorting and to load search control.
+    });
+
+ stateLayer.addTo(map);
+
+  ////////// Autocomplete search
+	function addDataToAutocomplete(arr) {
+                 
+        arr.sort(function(a, b){ // sort object by Name
+            var nameA=a.label, nameB=b.label
+            if (nameA < nameB) //sort string ascending
+                return -1 
+            if (nameA > nameB)
+                return 1
+            return 0 //default return value (no sorting)
+        })
+
+   		// The source for autocomplete.  https://api.jqueryui.com/autocomplete/#method-option
+		$( "#autocomplete" ).autocomplete("option", "source", arr); 
+	
+		$( "#autocomplete" ).on( "autocompleteselect", function( event, ui ) {
+			polySelect(ui.item.label);  //grabs selected state name
+			ui.item.value='';
+		});
+	}	///////////// Autocomplete search end
+
+
+// fire off click event and zoom to polygon  
+  		function polySelect(a){
+			map._layers[a].fire('click');  // 'clicks' on state name from search
+			var layer = map._layers[a];
+			map.fitBounds(layer.getBounds());  // zooms to selected poly
+        }
+// END...fire off click event and zoom to polygon
+//		var searchControl = new L.Control.Search({
+//		layer: basedata,
+//		propertyName: 'Name',
+//		marker: false,
+//		moveToLocation: function(latlng) {
+//			console.log(latlng +" Coordinates");
+//  			map.setView(latlng, 12); // set the zoom
+//		}
+//	});
+//	
+//	map.addControl( searchControl );	
+
+// Pesquisa localidades
+//	L.Control.geocoder({
+//			position: 'topleft',
+//		}).addTo(map);
+	
+// Botão Fullscreen
+	map.addControl(new L.Control.Fullscreen());
+	
+// Localização
+	map.addControl(new L.control.locate());
+
+// Notas
+	var src = 'CEHL';
+	var title = L.control({
+			position: 'bottomleft'
+		});
+	title.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'ctl src');
+		this.update();
+		return this._div;
+	};
+	title.update = function (props) {
+		this._div.innerHTML = src;
+	};
+	title.addTo(map);
+
+// Escala
+	L.control.scale().addTo(map);
+	
+// Layer control - Adicionar layer base
+L.control.layers(basemaps, overlaymaps, {
+	collapsed: true
+}).addTo(map);
+
+// Fit to overlay bounds (SW and NE points with (lat, lon))
+//map.fitBounds([[39.297475, -9.316003], [39.420275, -9.050907]]);
+map.fitBounds([[39.292888,  -9.343233], [39.286635, -9.325678]]);	
+
+</script>
+
+
+
+</body>
+</html>
