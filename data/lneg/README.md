@@ -14,7 +14,7 @@ https://geoportal.lneg.pt/pt/dados_abertos/servicos_wms/
 
 Exemplo com o [QGIS](https://www.qgis.org/)
 
-![qgisconnectvectorhttppng](qgis_connect_vector_http.png)
+![qgisconnectvectorhttppng](imagens/qgis_connect_vector_http.png)
 
 ### Recursos Geotérmicos
 
