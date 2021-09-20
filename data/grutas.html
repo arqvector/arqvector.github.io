@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>GeoJSON tutorial - Leaflet popup</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+
+#map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script src="geojson.js" type="text/javascript"></script>
+
+<script>
+
+
+// Create the map
+var map = L.map('map');
+
+// Base layers
+//  .. OpenStreetMap
+var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+		minZoom: 1,
+		maxZoom: 20
+	});
+
+//  .. OpenTopoMap
+var otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 1,
+		maxZoom: 20
+	});
+
+//  .. Esri DGT
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 1,
+		maxZoom: 20
+	});
+
+//  .. CartoDB Positron
+var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 1,
+		maxZoom: 20
+});
+
+// Set up the OSM layer
+var osmTiles = 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		minZoom: 1,
+		maxZoom: 20,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/light-v9',
+		tileSize: 512,
+		zoomOffset: -1
+	});
+
+cartodb.addTo(map);	
+
+var baseLayer = {
+	"OpenStreetMap": osm,
+	"OpenTopoMap": otm,
+	"Satélite": esri,
+	"CartoDB Positron": cartodb,
+	"OpenStreetMap (box)": osmTiles,
+};
+
+// config popup
+    function onEachFeature(feature, layer) {
+        var popupContent = [];
+        // render properties
+        for (var key in feature.properties) {
+            popupContent.push('<tr>\
+			<th scope="row"><b>\
+			' + key + ':</b></th><td>' + feature.properties[key] + '</td>\
+			</tr>');
+        }
+
+        // render coordenadas
+        if(feature.geometry.type === "Point")
+        {
+            popupContent.push('<tr><th scope="row"><b>Latitude: </b></th><td>' + feature.geometry.coordinates[1] + '</td></tr>');
+            popupContent.push('<tr><th scope="row"><b>Longitude: </b></th><td>' + feature.geometry.coordinates[0] + '</td></tr>');
+        }
+		
+        // Título
+        layer.bindPopup(
+		'<h2>' + 
+		// usar este se não tives espaçoes no nome da tabela
+		//feature.properties.designacao + 
+		// este funciona com ou sem espaços no nome da tabela
+		feature.properties['NOMBRE CAVIDAD'].toLocaleString() + '</h2>' + 
+		// junta dados em tabela
+		'<table>' + popupContent.join('') + '</table>', {maxHeight: 400} );
+		
+		
+    }
+
+// icon
+//	var Icon = L.icon({
+//		iconUrl: 'gruta.png',
+//		iconSize: [32, 37],
+//		iconAnchor: [16, 37],
+//		popupAnchor: [0, -28]
+//	});
+
+// layer
+	var featureLayer = L.geoJson(novo, {
+
+		onEachFeature: onEachFeature,
+		
+	//	pointToLayer: function (feature, latlng) {
+	//		return L.marker(latlng, {icon: Icon});
+	//	},
+	
+	}).addTo(map);
+
+// ajustar al limites do layer
+map.fitBounds(featureLayer.getBounds()).zoomOut(0);
+
+var overlay = {
+    "Layer": featureLayer
+}
+
+var layerControl = new L.control.layers(baseLayer, overlay, {
+    collapsed: true
+});
+
+map.addControl(layerControl);
+
+// popup simples com todas as linhas do json
+//var layer = L.geoJSON(novo, {
+// onEachFeature: function (f, l) {
+//   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+// }
+//}).addTo(map);
+
+</script>
+
+
+
+</body>
+</html>
