@@ -921,14 +921,14 @@ var cadastro =L.tileLayer('cadastro/{z}/{x}/{y}.png', {
 	// Fit to overlay bounds (SW and NE points with (lat, lon))
 	// map.fitBounds([[39.3027, -9.2217], [39.3383, -9.2721]]);
 	// Limita o pan
-	var southWest = L.latLng(39.3027, -9.2217),
-		northEast = L.latLng(39.3383, -9.2721);
-	var bounds = L.latLngBounds(southWest, northEast);
-
-	map.setMaxBounds(bounds);
-	map.on('drag', function() {
-		map.panInsideBounds(bounds, { animate: false });
-	});
+//	var southWest = L.latLng(39.3027, -9.2217),
+//		northEast = L.latLng(39.3383, -9.2721);
+//	var bounds = L.latLngBounds(southWest, northEast);
+//
+//	map.setMaxBounds(bounds);
+//	map.on('drag', function() {
+//		map.panInsideBounds(bounds, { animate: false });
+//	});
 
         </script>
     </body>
