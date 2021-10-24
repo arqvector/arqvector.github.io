@@ -124,6 +124,12 @@ https://munsell.com/faqs/list-of-colors-by-notation-name/
 [WebODM](https://github.com/OpenDroneMap/WebODM)
 [install Web OpenDroneMap (WebODM)](https://www.hatarilabs.com/ih-en/how-to-install-web-opendronemap-webodm-in-windows-with-docker)
 
+## Criar mapas online
+[uMap](https://umap.openstreetmap.fr/pt-pt/)
+O uMap permite criar mapas através de camadas do OpenStreetMap num minuto e mostrá-los no seu site.
+
+[geojson.io](https://geojson.io/#map=7/39.652/-8.503)
+O geojson.io é uma ferramenta rápida e simples para criar, visualizar e partilhar mapas. geojson.io leva o nome de GeoJSON, um formato de dados de código aberto e suporta GeoJSON em todas as formas - mas também aceita KML, GPX, CSV, GTFS, TopoJSON e outros formatos.
 
 ----
 # Exemplos [![](www/css/img/external-link.png)](#arqvectorgithubio)
