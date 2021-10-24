@@ -124,12 +124,23 @@ https://munsell.com/faqs/list-of-colors-by-notation-name/
 [WebODM](https://github.com/OpenDroneMap/WebODM)
 [install Web OpenDroneMap (WebODM)](https://www.hatarilabs.com/ih-en/how-to-install-web-opendronemap-webodm-in-windows-with-docker)
 
-## Criar mapas online
+# Mapas online
+## Criar mapas
 [uMap](https://umap.openstreetmap.fr/pt-pt/)
 O uMap permite criar mapas através de camadas do OpenStreetMap num minuto e mostrá-los no seu site.
 
 [geojson.io](https://geojson.io/#map=7/39.652/-8.503)
 O geojson.io é uma ferramenta rápida e simples para criar, visualizar e partilhar mapas. geojson.io leva o nome de GeoJSON, um formato de dados de código aberto e suporta GeoJSON em todas as formas - mas também aceita KML, GPX, CSV, GTFS, TopoJSON e outros formatos.
+
+## Contribuir para mapas
+
+## Consulta de mapas [OSM - OpenStreetMap](https://www.openstreetmap.org/)
+[overpass](https://overpass-turbo.eu/)
+A API Overpass é uma API somente leitura que fornece partes personalizadas selecionadas dos dados do mapa OSM. Ele atua como uma base de dados na web: o cliente envia uma consulta à API e recebe de volta o conjunto de dados que corresponde à consulta. Também disponivel para [QGIS](https://plugins.qgis.org/plugins/tags/overpass/)
+
+## Contribuir com dados para [OSM - OpenStreetMap](https://www.openstreetmap.org/)
+[OSM - OpenStreetMap](https://www.openstreetmap.org/)
+[JODM](https://josm.openstreetmap.de/)
 
 ----
 # Exemplos [![](www/css/img/external-link.png)](#arqvectorgithubio)
