@@ -1,0 +1,14 @@
+ 
+.leaflet-popup-content-wrapper {
+    background: #000;
+    border-radius: 0px;
+}
+
+h2 {
+    color: #9e0101;
+}
+
+tbody {
+    color: white;
+}
+

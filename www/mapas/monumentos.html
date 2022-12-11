@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+		<link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+		<link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+		<!-- <link rel="stylesheet" href="css/extra.css"> -->
+		<title>Monumentos</title>
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+		<script src="data/monumentos.js"></script>
+		<script src="data/portugal.js"></script>
+		<!-- <script src="data/cerca.js"></script> -->
+
+<!-- Botão Fullscreen -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+  
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+        <script>
+			var LeafIcon = L.Icon.extend({
+		options: {
+			//shadowUrl: 'leaf-shadow.png',
+			iconSize:     [38, 38],
+			//shadowSize:   [50, 64],
+			//iconAnchor:   [22, 94],
+			//shadowAnchor: [4, 62],
+			//popupAnchor:  [-3, -76]
+		}
+	});
+
+	var Icon = new LeafIcon({iconUrl: 'css/img/loc_azul.svg'});
+		
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+		// Concelho Óbidos
+            zoomControl:true, maxZoom:20, minZoom:11
+        }).fitBounds([[39.29985871190282865, -9.29839439336545226], [39.43743113374927134, -9.05242191722516765]]);
+		// Vila Óbidos
+//           zoomControl:true, maxZoom:20, minZoom:11
+//        }).fitBounds([[39.3678,-9.1776],[39.3529,-9.1346]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://sites.google.com/view/patrimonio-obidos/inicio" target="_blank">ADPCO - Monumentos</a> | <a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+//        var layer_OSMStandard_0 = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+//            pane: 'pane_OSMStandard_0',
+//            opacity: 1.0,
+//            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+//            minZoom: 1,
+//            maxZoom: 28,
+//            minNativeZoom: 0,
+//            maxNativeZoom: 19
+//        });
+//        layer_OSMStandard_0;
+//        map.addLayer(layer_OSMStandard_0);
+		
+
+
+// Base layers
+//  .. OpenStreetMap
+var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. OpenTopoMap
+var otm = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenTopoMap</a> contributors',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. Esri DGT
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: '&copy; <a href=\"https://www.esri.com/\">Esri - DGT</a>',
+		minZoom: 10,
+		maxZoom: 21
+	});
+
+//  .. CartoDB Positron
+var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+		minZoom: 10,
+		maxZoom: 21
+});
+cartodb.addTo(map);	
+
+// layer Portugal
+       function style_portugal_0() {
+            return {
+                pane: 'pane_portugal',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,136,255,0.14901960784313725)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_portugal');
+        map.getPane('pane_portugal').style.zIndex = 401;
+        map.getPane('pane_portugal').style['mix-blend-mode'] = 'normal';
+        var layer_portugal = new L.geoJson(json_portugal, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_portugal',
+            layerName: 'portugal',
+            pane: 'pane_portugal',
+
+            style: style_portugal_0,
+        });
+        bounds_group.addLayer(layer_portugal);
+        map.addLayer(layer_portugal);
+		
+// layer Cerca
+       function style_cerca_0() {
+            return {
+                pane: 'pane_cerca',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,0.14901960784313725)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_cerca');
+        map.getPane('pane_cerca').style.zIndex = 401;
+        map.getPane('pane_cerca').style['mix-blend-mode'] = 'normal';
+        var layer_cerca = new L.geoJson(json_cerca, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_cerca',
+            layerName: 'layer_data',
+            pane: 'pane_cerca',
+
+            style: style_cerca_0,
+        });
+        bounds_group.addLayer(layer_cerca);
+        // map.addLayer(layer_cerca);
+
+///
+        function pop_layer(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        //layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+               // mouseover: highlightFeature,
+            });
+            var popupContent = '\
+                        <table>\
+<!--                     <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                       <td>' + (feature.properties['designacao'] !== null ? autolinker.link(feature.properties['designacao'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+					<tr>\
+					<th scope="row">Descrição:</th>\
+                        <td>' + (feature.properties['descricao'] !== null ? autolinker.link(feature.properties['descricao'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+--!> 					</table>\
+					<center><h2><u>' + (feature.properties['designacao'] !== null ? autolinker.link(                    feature.properties['designacao'].toLocaleString()) : '') + '</u></h2></center>\
+				';
+           // layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.bindPopup(popupContent);
+        }
+
+        function style_layer_0() {
+            return {
+                pane: 'pane_layer',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,207,80,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_layer');
+        map.getPane('pane_layer').style.zIndex = 401;
+        map.getPane('pane_layer').style['mix-blend-mode'] = 'normal';
+
+        var datainfo = new L.geoJson(json_data, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_data',
+            layerName: 'monumentos',
+            pane: 'pane_layer',
+            onEachFeature: pop_layer,
+					pointToLayer: function (feature, latlng) {
+		//	return L.marker(latlng, {icon: Icon});
+            var Icon2 = new LeafIcon({iconUrl: 'markers/' + feature.properties.icon});
+			return L.marker(latlng, {icon: Icon2});
+			},
+//            pointToLayer: function (feature, latlng) {
+//                var context = {
+//                    feature: feature,
+//                    variables: {}
+//                };
+//                return L.circleMarker(latlng, style_layer_0(feature));
+//            },
+        });
+        var cluster_layer = new L.MarkerClusterGroup({
+			showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2,
+			maxClusterRadius:20
+			});
+        cluster_layer.addLayer(datainfo);
+
+        bounds_group.addLayer(datainfo);
+        cluster_layer.addTo(map);
+
+
+ var baseMaps = {
+	"OpenStreetMap": osm,
+	"OpenTopoMap": otm,
+	"Satélite": esri,
+	"CartoDB Positron": cartodb,};
+        L.control.layers(baseMaps,{'<img src="legend/loc_azul.png" /> Monumentos': cluster_layer,
+		//"OSM Standard": layer_OSMStandard_0,
+		}).addTo(map);
+        setBounds();
+
+         var i = 0;
+        layer_cerca.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+
+        resetLabels([layer_cerca]);
+        map.on("zoomend", function(){
+            resetLabels([layer_cerca]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_cerca]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_cerca]);
+        });
+		
+	// Para fazer um ajuste automático do pop-up área do mapa, para que o pop-up caiba no mapa e não fique "cortado". 
+	map.on('popupopen', function (e) {
+    map.setView(e.target._popup._latlng, e.target._zoom);
+        });
+	// Botão Fullscreen
+	map.addControl(new L.Control.Fullscreen());	
+	
+		// Notas
+	var src = 'Sérgio Pinheiro';
+	var title = L.control({
+			position: 'bottomleft'
+		});
+	title.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'ctl src');
+		this.update();
+		return this._div;
+	};
+	title.update = function (props) {
+		this._div.innerHTML = src;
+	};
+	// title.addTo(map);
+		
+		// Escala
+	L.control.scale().addTo(map);
+
+	// Fit to overlay bounds (SW and NE points with (lat, lon))
+//	 map.fitBounds([[39.3027, -9.2217], [39.3383, -9.2721]]);
+	// Limita o pan 
+	// Concelho de Óbidos
+	var southWest = L.latLng(39.2725, -9.3967),
+		northEast = L.latLng(39.4705, -8.9896);
+	// Vila de Óbidos
+//	var southWest = L.latLng(39.3529, -9.1446),
+//		northEast = L.latLng(39.3678, -9.1676);
+	var bounds = L.latLngBounds(southWest, northEast);
+
+	map.setMaxBounds(bounds);
+	map.on('drag', function() {
+		map.panInsideBounds(bounds, { animate: false });
+	});	
+        </script>
+    </body>
+</html>
