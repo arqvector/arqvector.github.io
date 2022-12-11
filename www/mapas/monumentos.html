@@ -287,30 +287,30 @@ cartodb.addTo(map);
 		}).addTo(map);
         setBounds();
 
-         var i = 0;
-        layer_cerca.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-
-        resetLabels([layer_cerca]);
-        map.on("zoomend", function(){
-            resetLabels([layer_cerca]);
-        });
-        map.on("layeradd", function(){
-            resetLabels([layer_cerca]);
-        });
-        map.on("layerremove", function(){
-            resetLabels([layer_cerca]);
-        });
+//         var i = 0;
+//        layer_cerca.eachLayer(function(layer) {
+//           var context = {
+//                feature: layer.feature,
+//                variables: {}
+//            };
+//            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
+//            labels.push(layer);
+//            totalMarkers += 1;
+//              layer.added = true;
+//              addLabel(layer, i);
+//              i++;
+//        });
+//
+//        resetLabels([layer_cerca]);
+//        map.on("zoomend", function(){
+//            resetLabels([layer_cerca]);
+//        });
+//        map.on("layeradd", function(){
+//            resetLabels([layer_cerca]);
+//        });
+//        map.on("layerremove", function(){
+//            resetLabels([layer_cerca]);
+//        });
 		
 	// Para fazer um ajuste automático do pop-up área do mapa, para que o pop-up caiba no mapa e não fique "cortado". 
 	map.on('popupopen', function (e) {
