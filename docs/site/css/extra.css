@@ -1,0 +1,37 @@
+/* fonte */
+body{
+	font-family: -apple-system,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji !important;
+}
+
+/* bloco código - fonte e tamanho */
+.md-typeset code{
+	font-family: Source Code Pro,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace !important;
+	font-size: 85%;
+}
+
+/* bloco código - comentários */
+.c1{
+	color: #a50 !important;
+	/*font-family: inherit !important;*/
+}
+
+/* bloco código - exp. SELECT */
+.k{
+	color: #908 !important;
+	font-weight: bold;
+}
+
+/* bloco código - exp. int */
+.nb{
+	color: #4500e6 !important;
+}
+
+/* bloco código - %= */
+.o{
+	color: #a11 !important;
+}
+
+/* bloco código - {}[]():;, */
+.p{
+	color: #0000b3 !important;
+}
