@@ -44,7 +44,7 @@
         <script src="js/leaflet.markercluster.js"></script>
 		<script src="data/monumentos.js"></script>
 		<script src="data/portugal.js"></script>
-		<script src="data/cerca.js"></script>
+		<!-- <script src="data/cerca.js"></script> -->
 
 <!-- Botão Fullscreen -->
   <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
@@ -168,35 +168,35 @@ cartodb.addTo(map);
         map.addLayer(layer_portugal);
 		
 // layer Cerca
-       function style_cerca_0() {
-            return {
-                pane: 'pane_cerca',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(227,26,28,0.14901960784313725)',
-                interactive: false,
-            }
-        }
-        map.createPane('pane_cerca');
-        map.getPane('pane_cerca').style.zIndex = 401;
-        map.getPane('pane_cerca').style['mix-blend-mode'] = 'normal';
-        var layer_cerca = new L.geoJson(json_cerca, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_cerca',
-            layerName: 'layer_data',
-            pane: 'pane_cerca',
-
-            style: style_cerca_0,
-        });
-        bounds_group.addLayer(layer_cerca);
-        // map.addLayer(layer_cerca);
+//       function style_cerca_0() {
+//            return {
+//                pane: 'pane_cerca',
+//                opacity: 1,
+//                color: 'rgba(35,35,35,0.0)',
+//                dashArray: '',
+//                lineCap: 'butt',
+//                lineJoin: 'miter',
+//                weight: 1.0, 
+//                fill: true,
+//                fillOpacity: 1,
+//                fillColor: 'rgba(227,26,28,0.14901960784313725)',
+//                interactive: false,
+//            }
+//        }
+//        map.createPane('pane_cerca');
+//        map.getPane('pane_cerca').style.zIndex = 401;
+//        map.getPane('pane_cerca').style['mix-blend-mode'] = 'normal';
+//        var layer_cerca = new L.geoJson(json_cerca, {
+//            attribution: '',
+//            interactive: false,
+//            dataVar: 'json_cerca',
+//            layerName: 'layer_data',
+//            pane: 'pane_cerca',
+//
+//            style: style_cerca_0,
+//        });
+//        bounds_group.addLayer(layer_cerca);
+//        // map.addLayer(layer_cerca);
 
 ///
         function pop_layer(feature, layer) {
@@ -299,30 +299,30 @@ cartodb.addTo(map);
 		}).addTo(map);
         setBounds();
 
-         var i = 0;
-        layer_cerca.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-
-        resetLabels([layer_cerca]);
-        map.on("zoomend", function(){
-            resetLabels([layer_cerca]);
-        });
-        map.on("layeradd", function(){
-            resetLabels([layer_cerca]);
-        });
-        map.on("layerremove", function(){
-            resetLabels([layer_cerca]);
-        });
+//         var i = 0;
+//        layer_cerca.eachLayer(function(layer) {
+//            var context = {
+//                feature: layer.feature,
+//                variables: {}
+//            };
+//            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
+//            labels.push(layer);
+//            totalMarkers += 1;
+//              layer.added = true;
+//              addLabel(layer, i);
+//              i++;
+//        });
+//
+//        resetLabels([layer_cerca]);
+//        map.on("zoomend", function(){
+//            resetLabels([layer_cerca]);
+//        });
+//        map.on("layeradd", function(){
+//            resetLabels([layer_cerca]);
+//        });
+//        map.on("layerremove", function(){
+//            resetLabels([layer_cerca]);
+//        });
 		
 	// Para fazer um ajuste automático do pop-up área do mapa, para que o pop-up caiba no mapa e não fique "cortado". 
 	map.on('popupopen', function (e) {
