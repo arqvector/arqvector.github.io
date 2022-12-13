@@ -4,6 +4,7 @@
         <!-- icon link 
         <link rel="icon" href="https://arqvector.github.io/www/css/img/logo.png" type="image/x-icon" /> -->
         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+		
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
@@ -32,7 +33,7 @@
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
-        <script src="js/L.Control.Locate.min.js"></script>
+		<script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -43,19 +44,19 @@
         <script src="js/leaflet.markercluster.js"></script>
 		<script src="data/monumentos.js"></script>
 		<script src="data/portugal.js"></script>
-		<!-- <script src="data/cerca.js"></script> -->
+		<script src="data/cerca.js"></script>
 
 <!-- Botão Fullscreen -->
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script> 
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
-  <!-- <script src='js/Leaflet.fullscreen.min.js'></script>
-  <link href='css/leaflet.fullscreen.css' rel='stylesheet' /> -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+  <!-- <script src='js/Leaflet.fullscreen.min.js'></script> -->
+  <!-- <link href='css/leaflet.fullscreen.css' rel='stylesheet' /> -->
   
   
 <!-- Jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<!--   <script src="js/jquery.min.js"></script> -->
-
+  <!-- <script src="js/jquery.min.js"></script> -->
+  
         <script>
 			var LeafIcon = L.Icon.extend({
 		options: {
@@ -167,34 +168,34 @@ cartodb.addTo(map);
         map.addLayer(layer_portugal);
 		
 // layer Cerca
-//        function style_cerca_0() {
-//            return {
-//                pane: 'pane_cerca',
-//                opacity: 1,
-//                color: 'rgba(35,35,35,0.0)',
-//                dashArray: '',
-//                lineCap: 'butt',
-//                lineJoin: 'miter',
-//                weight: 1.0, 
-//                fill: true,
-//                fillOpacity: 1,
-//                fillColor: 'rgba(227,26,28,0.14901960784313725)',
-//                interactive: false,
-//            }
-//        }
-//        map.createPane('pane_cerca');
-//        map.getPane('pane_cerca').style.zIndex = 401;
-//        map.getPane('pane_cerca').style['mix-blend-mode'] = 'normal';
-//        var layer_cerca = new L.geoJson(json_cerca, {
-//            attribution: '',
-//            interactive: false,
-//            dataVar: 'json_cerca',
-//            layerName: 'layer_data',
-//            pane: 'pane_cerca',
-//
-//            style: style_cerca_0,
-//        });
-//        bounds_group.addLayer(layer_cerca);
+       function style_cerca_0() {
+            return {
+                pane: 'pane_cerca',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,0.14901960784313725)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_cerca');
+        map.getPane('pane_cerca').style.zIndex = 401;
+        map.getPane('pane_cerca').style['mix-blend-mode'] = 'normal';
+        var layer_cerca = new L.geoJson(json_cerca, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_cerca',
+            layerName: 'layer_data',
+            pane: 'pane_cerca',
+
+            style: style_cerca_0,
+        });
+        bounds_group.addLayer(layer_cerca);
         // map.addLayer(layer_cerca);
 
 ///
@@ -211,24 +212,31 @@ cartodb.addTo(map);
                 },
                // mouseover: highlightFeature,
             });
-            var popupContent = '\
+            var popupContent = '<center><h2><u>' + (feature.properties['designacao'] !== null ? autolinker.link(                    feature.properties['designacao'].toLocaleString()) : '') + '</u></h2></center>\
                         <table>\
 <!--                     <tr>\
                         <th scope="row">id</th>\
                         <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                       <td>' + (feature.properties['designacao'] !== null ? autolinker.link(feature.properties['designacao'].toLocaleString()) : '') + '</td>\
+--!>                <th scope="row">Resumo:</th><td>' + (feature.properties['resumo'] !== null ? autolinker.link(feature.properties['resumo'].toLocaleString()) : '') + '</td>\
                     </tr>\
 					<tr>\
-					<th scope="row">Descrição:</th>\
-                        <td>' + (feature.properties['descricao'] !== null ? autolinker.link(feature.properties['descricao'].toLocaleString()) : '') + '</td>\
+					<th scope="row">Época de construção:</th>\
+                        <td>' + (feature.properties['epoca_construcao'] !== null ? autolinker.link(feature.properties['epoca_construcao'].toLocaleString()) : '') + '</td>\
                     </tr>\
---!> 					</table>\
-					<center><h2><u>' + (feature.properties['designacao'] !== null ? autolinker.link(                    feature.properties['designacao'].toLocaleString()) : '') + '</u></h2></center>\
+					<tr>\
+					<th scope="row">Cronologia:</th>\
+                        <td>' + (feature.properties['cronologia'] !== null ? autolinker.link(feature.properties['cronologia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+					<tr>\
+					<th scope="row">Fonte:</th>\
+                        <td><a href="' + (feature.properties['web_scraper_start_url'] !== null ? (feature.properties['web_scraper_start_url'].toLocaleString()) : '') + '" target="_blank">Monumentos.pt</a></td>\
+                    </tr>\
+ 					</table>\
 				';
-           // layer.bindPopup(popupContent, {maxHeight: 400});
-            layer.bindPopup(popupContent);
-        }
+            layer.bindPopup(popupContent, {maxHeight: 400});
+           // layer.bindPopup(popupContent);
+        } 
 
         function style_layer_0() {
             return {
@@ -291,30 +299,30 @@ cartodb.addTo(map);
 		}).addTo(map);
         setBounds();
 
-//         var i = 0;
-//        layer_cerca.eachLayer(function(layer) {
-//           var context = {
-//                feature: layer.feature,
-//                variables: {}
-//            };
-//            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
-//            labels.push(layer);
-//            totalMarkers += 1;
-//              layer.added = true;
-//              addLabel(layer, i);
-//              i++;
-//        });
-//
-//        resetLabels([layer_cerca]);
-//        map.on("zoomend", function(){
-//            resetLabels([layer_cerca]);
-//        });
-//        map.on("layeradd", function(){
-//            resetLabels([layer_cerca]);
-//        });
-//        map.on("layerremove", function(){
-//            resetLabels([layer_cerca]);
-//        });
+         var i = 0;
+        layer_cerca.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['local'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['local']) + '</div>':''), {permanent: true, direction:"center"});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+
+        resetLabels([layer_cerca]);
+        map.on("zoomend", function(){
+            resetLabels([layer_cerca]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_cerca]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_cerca]);
+        });
 		
 	// Para fazer um ajuste automático do pop-up área do mapa, para que o pop-up caiba no mapa e não fique "cortado". 
 	map.on('popupopen', function (e) {
